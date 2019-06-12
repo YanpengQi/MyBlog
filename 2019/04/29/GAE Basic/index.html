@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":true},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Google Cloud PlatformGAE (Google App Engine)Google App Engine is a cloud computing platform for developing and hosting web applications in Google-managed data centers. GCE (Google Compute Engine)Googl">
+<meta name="keywords" content="Web,Cloud,Go,GAE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAE Basic">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/GAE Basic/index.html">
+<meta property="og:site_name" content="Anda">
+<meta property="og:description" content="Google Cloud PlatformGAE (Google App Engine)Google App Engine is a cloud computing platform for developing and hosting web applications in Google-managed data centers. GCE (Google Compute Engine)Googl">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/3.%20GAE%20Basic-2019-4-28-21-11-47.png">
+<meta property="og:updated_time" content="2019-04-29T18:08:46.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GAE Basic">
+<meta name="twitter:description" content="Google Cloud PlatformGAE (Google App Engine)Google App Engine is a cloud computing platform for developing and hosting web applications in Google-managed data centers. GCE (Google Compute Engine)Googl">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Luorinz/images/master/3.%20GAE%20Basic-2019-4-28-21-11-47.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/GAE Basic/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>GAE Basic | Anda</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Anda</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Notes of study, work and life</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">2</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">26</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/Luorinz" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/GAE Basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anda Luo">
+      <meta itemprop="description" content="Notes of study, work and life">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anda">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GAE Basic
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-29 18:05:54 / Modified: 11:08:46" itemprop="dateCreated datePublished" datetime="2019-04-29T18:05:54-07:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">9.8k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">9 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Google-Cloud-Platform"><a href="#Google-Cloud-Platform" class="headerlink" title="Google Cloud Platform"></a>Google Cloud Platform</h1><h2 id="GAE-Google-App-Engine"><a href="#GAE-Google-App-Engine" class="headerlink" title="GAE (Google App Engine)"></a>GAE (Google App Engine)</h2><p><code>Google App Engine</code> is a cloud computing platform for developing and hosting web applications in Google-managed data centers.</p>
+<h2 id="GCE-Google-Compute-Engine"><a href="#GCE-Google-Compute-Engine" class="headerlink" title="GCE (Google Compute Engine)"></a>GCE (Google Compute Engine)</h2><p><code>Google Compute Engine</code> delivers virtual machines running in Google’s innovative data centers and worldwide fiber network.</p>
+<h2 id="GKE-Google-Container-Engine"><a href="#GKE-Google-Container-Engine" class="headerlink" title="GKE (Google Container Engine)"></a>GKE (Google Container Engine)</h2><p><a href="https://cloud.google.com/containers/" target="_blank" rel="noopener">https://cloud.google.com/containers/</a></p>
+<h2 id="Dataflow"><a href="#Dataflow" class="headerlink" title="Dataflow"></a>Dataflow</h2><p><code>Dataflow</code> is a unified programming model and a managed service for developing and executing a wide range of data processing patterns including ETL, batch computation, and continuous computation.</p>
+<h2 id="BigTable"><a href="#BigTable" class="headerlink" title="BigTable"></a>BigTable</h2><p><code>Cloud Bigtable</code> is Google’s NoSQL Big Data database service. It’s the same database that powers many core Google services, including Search, Analytics, Maps, and Gmail.</p>
+<h2 id="BigQuery"><a href="#BigQuery" class="headerlink" title="BigQuery"></a>BigQuery</h2><p><code>BigQuery</code> is Google’s fully managed, petabyte scale, low cost enterprise data warehouse for analytics.</p>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><ul>
+<li>PubSub</li>
+<li>Datastore</li>
+<li>Storage</li>
+<li>Monitoring </li>
+</ul>
+<h1 id="What-is-a-typical-BigData-project-web-analysis"><a href="#What-is-a-typical-BigData-project-web-analysis" class="headerlink" title="What is a typical BigData project (web+analysis)"></a>What is a typical BigData project (web+analysis)</h1><p><img src="https://raw.githubusercontent.com/Luorinz/images/master/3.%20GAE%20Basic-2019-4-28-21-11-47.png" alt="3. GAE Basic-2019-4-28-21-11-47.png"></p>
+<ul>
+<li>Service (GAE/GKE) to receive user generated contents</li>
+<li>Datastore (BigTable/Spanner) to save contents</li>
+<li>Index (ElasticSearch) to query contents in runtime</li>
+<li>Service (GAE/GKE) to serve contents in runtime</li>
+<li>Dataflow (MapReduce) to dump data into BigQuery</li>
+<li>BigQuery (SQL) to perform further analysis</li>
+</ul>
+<blockquote>
+<p>GKE is more like a simple GCE</p>
+</blockquote>
+<h1 id="Google-App-Engine-Flex"><a href="#Google-App-Engine-Flex" class="headerlink" title="Google App Engine Flex"></a>Google App Engine Flex</h1><p><code>App Engine flexible environment</code> automatically scales your app up and down while balancing the load. Microservices, authorization, SQL and NoSQL databases, traffic splitting, logging. </p>
+<p>Step 3.1.1 In your Intellij, create a new file called <code>app.yaml</code></p>
+<p>The content has just two lines.</p>
+<blockquote>
+<p>GAE 通过flex实现负载均衡</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">runtime:</span> <span class="string">go</span></span><br><span class="line"><span class="attr">env:</span> <span class="string">flex</span></span><br></pre></td></tr></table></figure>
+<p><strong>Recommended</strong>: upload your two files (main.go and app.yaml) into github. </p>
+<p>Worst cast: just copy and paste in terminals.</p>
+<p>More readings</p>
+<ul>
+<li>Overview <a href="https://cloud.google.com/docs/overview/" target="_blank" rel="noopener">https://cloud.google.com/docs/overview/</a> </li>
+<li>Flex in GAE <a href="https://cloud.google.com/appengine/docs/flexible/" target="_blank" rel="noopener">https://cloud.google.com/appengine/docs/flexible/</a> </li>
+<li>GAE on Golang <a href="https://cloud.google.com/appengine/docs/go/" target="_blank" rel="noopener">https://cloud.google.com/appengine/docs/go/</a> </li>
+<li>GAE in go: <a href="https://cloud.google.com/appengine/docs/flexible/go/quickstart" target="_blank" rel="noopener">https://cloud.google.com/appengine/docs/flexible/go/quickstart</a> </li>
+</ul>
+<h1 id="Setup-cloud-terminal"><a href="#Setup-cloud-terminal" class="headerlink" title="Setup cloud terminal."></a>Setup cloud terminal.</h1><p>Question: Why use cloud terminal?<br>Answer: Such that we do not rely on the local environment (Windows vs. Mac). </p>
+<h2 id="Click-‘Activate-Google-Cloud-Shell’-Wait-until-the-init-is-done"><a href="#Click-‘Activate-Google-Cloud-Shell’-Wait-until-the-init-is-done" class="headerlink" title="Click ‘Activate Google Cloud Shell’.  Wait until the init is done"></a>Click ‘Activate Google Cloud Shell’.  Wait until the init is done</h2><p>Then you will see a vm available for you to play. This is similar to the EC2 vm.</p>
+<h2 id="Install-go-libraries-in-gcloud-terminal"><a href="#Install-go-libraries-in-gcloud-terminal" class="headerlink" title="Install go libraries in gcloud terminal."></a>Install go libraries in gcloud terminal.</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go get gopkg.in/olivere/elastic.v3</span><br><span class="line">go get github.com/pborman/uuid</span><br></pre></td></tr></table></figure>
+<h2 id="Recommended-Checkout-your-codes-from-github"><a href="#Recommended-Checkout-your-codes-from-github" class="headerlink" title="(Recommended) Checkout your codes from github"></a>(Recommended) Checkout your codes from github</h2><p>git clone <a href="https://github.com/Luorinz/Around.git" target="_blank" rel="noopener">https://github.com/Luorinz/Around.git</a></p>
+<p><strong>Question</strong>: what’s the purpose of app.yaml?</p>
+<p><strong>Answer</strong>: to tell google that your program is a go program and use go compiler to run it.</p>
+<p>Then enter this line of code to make sure you copy past is done.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat main.go | head -n 5</span><br></pre></td></tr></table></figure>
+<p>You’re expected to see this<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">        elastic &quot;gopkg.in/olivere/elastic.v3&quot;</span><br><span class="line">        &quot;fmt&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Enter-gcloud-app-deploy"><a href="#Enter-gcloud-app-deploy" class="headerlink" title="Enter gcloud app deploy"></a>Enter <code>gcloud app deploy</code></h2><p>When asked about site, enter 1, which is <code>us-west2</code></p>
+<p>When asked Y/n, enter Y. The deployment may take more than 10 minutes to finish (next deployment will be faster).</p>
+<p>Error: If you have error like this, you may have a wrong ES_URL. Update the value and deploy again.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Updating service [default]...failed.                                                                                         </span><br><span class="line">ERROR: (gcloud.app.deploy) Error Response: [9] </span><br><span class="line">Application startup error:</span><br><span class="line">+ exec app</span><br><span class="line">panic: no Elasticsearch node available</span><br></pre></td></tr></table></figure>
+<h2 id="Open-Postman-find-the-post-query-from-history"><a href="#Open-Postman-find-the-post-query-from-history" class="headerlink" title="Open Postman, find the post query from history."></a>Open Postman, find the post query from history.</h2><p><code>(POST, url=http://xxx.appspot.com/post)</code></p>
+<p>Replace xxx with your real project id</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"user"</span>:<span class="string">"1111"</span>,</span><br><span class="line">	<span class="attr">"message"</span>:<span class="string">"一生必去的100个地方"</span>,</span><br><span class="line">	<span class="attr">"location"</span>:&#123;</span><br><span class="line">		<span class="attr">"lat"</span>:<span class="number">37.5</span>,</span><br><span class="line">		<span class="attr">"lon"</span>:<span class="number">-120.1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And then find the get query from history. (GET, url=<a href="http://around-xxxx.appspot.com/search?lat=37.5&amp;lon=-120" target="_blank" rel="noopener">http://around-xxxx.appspot.com/search?lat=37.5&amp;lon=-120</a>)<br>You should get the results back</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"user"</span>: <span class="string">"1111"</span>,</span><br><span class="line">        <span class="attr">"message"</span>: <span class="string">"一生必去的100个地方"</span>,</span><br><span class="line">        <span class="attr">"location"</span>: &#123;</span><br><span class="line">            <span class="attr">"lat"</span>: <span class="number">37.5</span>,</span><br><span class="line">            <span class="attr">"lon"</span>: <span class="number">-120.1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Play with more examples. If you do not have any results back, try to change your lat or lon to make sure it’s within 200km.</p>
+<h2 id="Check-the-logging-to-see-if-there-is-any-error-message"><a href="#Check-the-logging-to-see-if-there-is-any-error-message" class="headerlink" title="Check the logging to see if there is any error message"></a>Check the logging to see if there is any error message</h2><p>Choose SATCKDRIVER -&gt; Logging -&gt; Logs</p>
+<h2 id="Optional-Stop-Instance-to-save-credit"><a href="#Optional-Stop-Instance-to-save-credit" class="headerlink" title="(Optional) Stop Instance to save credit."></a>(Optional) Stop Instance to save credit.</h2><h2 id="Optional-Start-the-instance-again-In-the-same-page-choose-one-instance-and-click-START-If-the-START-is-disabled-refresh-it-or-wait-a-minute"><a href="#Optional-Start-the-instance-again-In-the-same-page-choose-one-instance-and-click-START-If-the-START-is-disabled-refresh-it-or-wait-a-minute" class="headerlink" title="(Optional) Start the instance again. In the same page, choose one instance and click START. If the START is disabled, refresh it or wait a minute."></a>(Optional) Start the instance again. In the same page, choose one instance and click START. If the START is disabled, refresh it or wait a minute.</h2><h2 id="Optional-How-to-filter-word"><a href="#Optional-How-to-filter-word" class="headerlink" title="(Optional) How to filter word"></a>(Optional) How to filter word</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">containsFilteredWords</span><span class="params">(s *<span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        filteredWords := []<span class="keyword">string</span>&#123;</span><br><span class="line">                <span class="string">"fuck"</span>,</span><br><span class="line">                <span class="string">"100"</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> _, word := <span class="keyword">range</span> filteredWords &#123;</span><br><span class="line">                <span class="keyword">if</span> strings.Contains(*s, word) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Update relevant part from your code</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handlerSearch</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> _, item := <span class="keyword">range</span> searchResult.Each(reflect.TypeOf(typ)) &#123;</span><br><span class="line">                p := item.(Post)</span><br><span class="line">                fmt.Printf(<span class="string">"Post by %s: %s at lat %v and lon %v\n"</span>, p.User, p.Message, p.Location.Lat, p.Location.Lon)</span><br><span class="line">                <span class="comment">// TODO(vincent): Perform filtering based on keywords such as web spam etc.</span></span><br><span class="line">                <span class="keyword">if</span> !containsFilteredWords(&amp;p.Message) &#123;</span><br><span class="line">                        ps = <span class="built_in">append</span>(ps, p)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Related string operations<br><code>https://golang.org/pkg/strings/</code></p>
+<h2 id="Optional-Useful-Go-information"><a href="#Optional-Useful-Go-information" class="headerlink" title="(Optional) Useful Go information"></a>(Optional) Useful Go information</h2><h3 id="Error-vs-Panic"><a href="#Error-vs-Panic" class="headerlink" title="Error vs Panic"></a>Error vs Panic</h3><ul>
+<li>Error: normal way to handle error status.</li>
+<li><p>Panic: normally used when some “impossible” situation happens with no intend recover.</p>
+<ul>
+<li>Use “recover” to handle when exiting function.</li>
+<li>recover is like catch</li>
+</ul>
+</li>
+</ul>
+<h3 id="“defer”-clause"><a href="#“defer”-clause" class="headerlink" title="“defer” clause"></a>“defer” clause</h3><ul>
+<li>Preferred way to recycle resources<ul>
+<li>E.g. file handles, network connections, etc.</li>
+<li>Defer executes after return</li>
+<li>First come last executes</li>
+<li>Example</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">var</span> f File</span><br><span class="line">        <span class="keyword">if</span> f, err = os.Open(“Somefile”); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                <span class="built_in">panic</span>(“Error open file”)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">defer</span> f.Close()</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        <span class="comment">// some other error happens</span></span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span>  &#123;</span><br><span class="line">                <span class="built_in">panic</span>(“Unexpected error”)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Combined with recover to handle panic</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Foo</span><span class="params">()</span> <span class="title">result</span> <span class="title">string</span>, <span class="title">err</span> <span class="title">error</span></span> &#123;</span><br><span class="line">        <span class="keyword">type</span> openFileError <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line">        <span class="keyword">type</span> unexpectedError <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">                <span class="keyword">switch</span> p := <span class="built_in">recover</span>(); p &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="literal">nil</span>:</span><br><span class="line">                        <span class="comment">// no panic</span></span><br><span class="line">                <span class="keyword">case</span> openFileError&#123;&#125;:</span><br><span class="line">                        err = fmt.Errorf(“Open file error”)</span><br><span class="line">                <span class="keyword">case</span> unexpectedError&#123;&#125;:</span><br><span class="line">                        err = fmt.Errorf(“Unexpected error”)</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                        <span class="built_in">panic</span>(p)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> f File</span><br><span class="line">        <span class="keyword">if</span> f, err = os.Open(“Somefile”); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                <span class="built_in">panic</span>(openFileError&#123;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">defer</span> f.Close()</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Some work...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Some other error happens</span></span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span>  &#123;</span><br><span class="line">                <span class="built_in">panic</span>(unexpectedError&#123;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Go’s multiprocessing facility: Communication Sequential Processes<ul>
+<li><a href="https://en.wikipedia.org/wiki/Communicating_sequential_processes" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Communicating_sequential_processes</a></li>
+<li>Lightweight concurrency, synchronize using message passing</li>
+</ul>
+</li>
+<li>Go routine<ul>
+<li>Go’s concurrency mechanism</li>
+<li>Lightweight (corresponding to fiber)<ul>
+<li>Growable stacks</li>
+<li>Scheduling<ul>
+<li>m:n scheduling - m goroutine on n OS threads</li>
+<li>Scheduler invoked implicitly by language construct<ul>
+<li>E.g. time.Sleep, I/O, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Have no identity - nothing like thread id<ul>
+<li>Avoid thread-local storage (TLS, tend to be misused, similar to global variable)</li>
+<li>Easy go routine migration</li>
+</ul>
+</li>
+<li>Example</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// clock.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"io"</span></span><br><span class="line">        <span class="string">"log"</span></span><br><span class="line">        <span class="string">"net"</span></span><br><span class="line">        <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleConn</span><span class="params">(c net.Conn)</span></span> &#123;</span><br><span class="line">        <span class="keyword">defer</span> c.Close()</span><br><span class="line">        <span class="keyword">for</span> &#123;</span><br><span class="line">                _, err := io.WriteString(c, time.Now().Format(<span class="string">"15:04:05\n"</span>))</span><br><span class="line">                <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="comment">// e.g., client disconnected</span></span><br><span class="line">                &#125;</span><br><span class="line">                time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        listener, err := net.Listen(<span class="string">"tcp"</span>, <span class="string">"localhost:8000"</span>)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                log.Fatal(err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> &#123;</span><br><span class="line">                conn, err := listener.Accept()</span><br><span class="line">                <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                        log.Print(err) <span class="comment">// e.g., connection aborted</span></span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                &#125;</span><br><span class="line">                handleConn(conn)</span><br><span class="line">                <span class="comment">//go handleConn(conn) // handle connections concurrently</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// netcat.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"io"</span></span><br><span class="line">        <span class="string">"log"</span></span><br><span class="line">        <span class="string">"net"</span></span><br><span class="line">        <span class="string">"os"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        conn, err := net.Dial(<span class="string">"tcp"</span>, <span class="string">"localhost:8000"</span>)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                log.Fatal(err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">defer</span> conn.Close()</span><br><span class="line">        mustCopy(os.Stdout, conn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mustCopy</span><span class="params">(dst io.Writer, src io.Reader)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> _, err := io.Copy(dst, src); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                log.Fatal(err)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Go channel<ul>
+<li>Communication mechanism for Go routine</li>
+<li>Example</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// channel_example.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        messages := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">                <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">                        fmt.Println(i)</span><br><span class="line">                &#125;</span><br><span class="line">                messages &lt;- <span class="string">"done"</span></span><br><span class="line">        &#125;()</span><br><span class="line"></span><br><span class="line">        msg := &lt;-messages</span><br><span class="line"></span><br><span class="line">        fmt.Println(msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>More reading<ul>
+<li><a href="https://golang.org/doc/" target="_blank" rel="noopener">https://golang.org/doc/</a></li>
+<li>The Go Programming Language - <a href="http://www.gopl.io/" target="_blank" rel="noopener">http://www.gopl.io/</a></li>
+<li><a href="https://blog.golang.org/" target="_blank" rel="noopener">https://blog.golang.org/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/tags/Cloud/" rel="tag"># Cloud</a>
+          
+            <a href="/tags/Go/" rel="tag"># Go</a>
+          
+            <a href="/tags/GAE/" rel="tag"># GAE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/29/ElasticSearch and GCE/" rel="next" title="ElasticSearch and GCE">
+                <i class="fa fa-chevron-left"></i> ElasticSearch and GCE
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/30/Google Cloud Storage/" rel="prev" title="Google Cloud Storage">
+                Google Cloud Storage <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Anda Luo</p>
+              <div class="site-description motion-element" itemprop="description">Notes of study, work and life</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Luorinz" title="GitHub &rarr; https://github.com/Luorinz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:luorinz@gmail.com" title="E-Mail &rarr; mailto:luorinz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-Cloud-Platform"><span class="nav-number">1.</span> <span class="nav-text">Google Cloud Platform</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GAE-Google-App-Engine"><span class="nav-number">1.1.</span> <span class="nav-text">GAE (Google App Engine)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCE-Google-Compute-Engine"><span class="nav-number">1.2.</span> <span class="nav-text">GCE (Google Compute Engine)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GKE-Google-Container-Engine"><span class="nav-number">1.3.</span> <span class="nav-text">GKE (Google Container Engine)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataflow"><span class="nav-number">1.4.</span> <span class="nav-text">Dataflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BigTable"><span class="nav-number">1.5.</span> <span class="nav-text">BigTable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BigQuery"><span class="nav-number">1.6.</span> <span class="nav-text">BigQuery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Others"><span class="nav-number">1.7.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-a-typical-BigData-project-web-analysis"><span class="nav-number">2.</span> <span class="nav-text">What is a typical BigData project (web+analysis)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-App-Engine-Flex"><span class="nav-number">3.</span> <span class="nav-text">Google App Engine Flex</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Setup-cloud-terminal"><span class="nav-number">4.</span> <span class="nav-text">Setup cloud terminal.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Click-‘Activate-Google-Cloud-Shell’-Wait-until-the-init-is-done"><span class="nav-number">4.1.</span> <span class="nav-text">Click ‘Activate Google Cloud Shell’.  Wait until the init is done</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-go-libraries-in-gcloud-terminal"><span class="nav-number">4.2.</span> <span class="nav-text">Install go libraries in gcloud terminal.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recommended-Checkout-your-codes-from-github"><span class="nav-number">4.3.</span> <span class="nav-text">(Recommended) Checkout your codes from github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enter-gcloud-app-deploy"><span class="nav-number">4.4.</span> <span class="nav-text">Enter gcloud app deploy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Open-Postman-find-the-post-query-from-history"><span class="nav-number">4.5.</span> <span class="nav-text">Open Postman, find the post query from history.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Check-the-logging-to-see-if-there-is-any-error-message"><span class="nav-number">4.6.</span> <span class="nav-text">Check the logging to see if there is any error message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Stop-Instance-to-save-credit"><span class="nav-number">4.7.</span> <span class="nav-text">(Optional) Stop Instance to save credit.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Start-the-instance-again-In-the-same-page-choose-one-instance-and-click-START-If-the-START-is-disabled-refresh-it-or-wait-a-minute"><span class="nav-number">4.8.</span> <span class="nav-text">(Optional) Start the instance again. In the same page, choose one instance and click START. If the START is disabled, refresh it or wait a minute.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-How-to-filter-word"><span class="nav-number">4.9.</span> <span class="nav-text">(Optional) How to filter word</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Useful-Go-information"><span class="nav-number">4.10.</span> <span class="nav-text">(Optional) Useful Go information</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-vs-Panic"><span class="nav-number">4.10.1.</span> <span class="nav-text">Error vs Panic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“defer”-clause"><span class="nav-number">4.10.2.</span> <span class="nav-text">“defer” clause</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+    <div id="sidebar-dimmer"></div>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Anda Luo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">202k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">3:04</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

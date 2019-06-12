@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":true},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Class 1 05/06/2019Fibonacci numbersFibonacci numbers (Exponential Algorithm)1234560, 1, 1, 2, 3, 5, 8, 13, 21a0, a1, a3, a3, a4, a5, a6, a7an = an-1 + an-2a0 = 0a1 = 1 Code123456fib1(int n) &amp;#123;">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes of Algorithm">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/[Notes] Notes of Algorithm CS5800/index.html">
+<meta property="og:site_name" content="Anda">
+<meta property="og:description" content="Class 1 05/06/2019Fibonacci numbersFibonacci numbers (Exponential Algorithm)1234560, 1, 1, 2, 3, 5, 8, 13, 21a0, a1, a3, a3, a4, a5, a6, a7an = an-1 + an-2a0 = 0a1 = 1 Code123456fib1(int n) &amp;#123;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-11T00:46:41.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Notes of Algorithm">
+<meta name="twitter:description" content="Class 1 05/06/2019Fibonacci numbersFibonacci numbers (Exponential Algorithm)1234560, 1, 1, 2, 3, 5, 8, 13, 21a0, a1, a3, a3, a4, a5, a6, a7an = an-1 + an-2a0 = 0a1 = 1 Code123456fib1(int n) &amp;#123;">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/[Notes] Notes of Algorithm CS5800/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Notes of Algorithm | Anda</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Anda</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Notes of study, work and life</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">2</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">26</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/Luorinz" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/[Notes] Notes of Algorithm CS5800/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anda Luo">
+      <meta itemprop="description" content="Notes of study, work and life">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anda">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Notes of Algorithm
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-07 20:41:45" itemprop="dateCreated datePublished" datetime="2019-05-07T20:41:45-07:00">2019-05-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-10 17:46:41" itemprop="dateModified" datetime="2019-06-10T17:46:41-07:00">2019-06-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">26k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">24 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+<h1 id="Class-1-05-06-2019"><a href="#Class-1-05-06-2019" class="headerlink" title="Class 1 05/06/2019"></a>Class 1 05/06/2019</h1><h2 id="Fibonacci-numbers"><a href="#Fibonacci-numbers" class="headerlink" title="Fibonacci numbers"></a>Fibonacci numbers</h2><h3 id="Fibonacci-numbers-Exponential-Algorithm"><a href="#Fibonacci-numbers-Exponential-Algorithm" class="headerlink" title="Fibonacci numbers (Exponential Algorithm)"></a>Fibonacci numbers (Exponential Algorithm)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0, 1, 1, 2, 3, 5, 8, 13, 21</span><br><span class="line">a0, a1, a3, a3, a4, a5, a6, a7</span><br><span class="line"></span><br><span class="line">an = an-1 + an-2</span><br><span class="line">a0 = 0</span><br><span class="line">a1 = 1</span><br></pre></td></tr></table></figure>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fib1(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fib1(n-<span class="number">1</span>) + fib1(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a>Time Complexity</h3><p>Answer <code>O(2^n)</code></p>
+<p>Less intuitive, not like<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    a[i] = a[i<span class="number">-1</span>] + <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Recursion-Tree"><a href="#Recursion-Tree" class="headerlink" title="Recursion Tree"></a>Recursion Tree</h2><p>$ T(n) = \text {runtime of fib1(n)}$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">              T(n)</span><br><span class="line">       /              \</span><br><span class="line">    T(n-1)           T(n-2)</span><br><span class="line">   /     \           /     \</span><br><span class="line">T(n-2)   T(n-3)    T(n-3)   T(n-4)</span><br><span class="line">            ......</span><br><span class="line">T(1)    T(0)    T(1)    T(0) ...</span><br></pre></td></tr></table></figure>
+<p>When hit 0 or 1, the recursion ends.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">            /\</span><br><span class="line">           /  \</span><br><span class="line">          /____\</span><br><span class="line">         /     /</span><br><span class="line">        /  _ /</span><br><span class="line">       / _/</span><br><span class="line">      /_/</span><br><span class="line">left side = n</span><br><span class="line">right side = n/2</span><br><span class="line"></span><br><span class="line">T(n) = num of nodes in this recursion tree</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">in first half of this tree</span><br><span class="line">            /\</span><br><span class="line">           /  \</span><br><span class="line">          /____\</span><br><span class="line">num of nodes = 2^k-1 = 2 ^ (n/2) - 1</span><br></pre></td></tr></table></figure>
+<p>Thus we have</p>
+<p>$ 2 ^ {n/2} &lt;= T(n) &lt;= 2 ^ n $</p>
+<p>Therefore </p>
+<p>$ 2 ^ {n/2} = (\sqrt {2}) ^ n ~= 1.4n $</p>
+<p>Clearly, this is a bad time complexity algorithm.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">                  T(n)</span><br><span class="line">           /              \</span><br><span class="line">        T(n-1)           T(n-2)</span><br><span class="line">       /     \           /     \</span><br><span class="line">    T(n-2)   T(n-3)    T(n-3)   T(n-4)</span><br><span class="line"></span><br><span class="line">There are a lot of repetition in the process of calculation. </span><br><span class="line"></span><br><span class="line">e.g. T(n-2) T(n-3)</span><br></pre></td></tr></table></figure>
+<h2 id="Linear-algorithm"><a href="#Linear-algorithm" class="headerlink" title="Linear algorithm"></a>Linear algorithm</h2><h3 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fib2(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] A = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    A[<span class="number">0</span>] = <span class="number">0</span>; A[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        A[i] = A[i-<span class="number">1</span>] + A[i-<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> A[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Time-Complexity-1"><a href="#Time-Complexity-1" class="headerlink" title="Time Complexity"></a>Time Complexity</h3><p>Linear time: <code>O(n)</code></p>
+<h2 id="Constant-space-algorithm"><a href="#Constant-space-algorithm" class="headerlink" title="Constant space algorithm"></a>Constant space algorithm</h2><h3 id="Code-2"><a href="#Code-2" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fib2(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] A = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    A[<span class="number">0</span>] = <span class="number">0</span>; A[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        A[i%<span class="number">2</span>] = A[(i-<span class="number">1</span>)%<span class="number">2</span>] + A[(i-<span class="number">2</span>)%<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> A[n%<span class="number">2</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i varies between 0 and 1</span><br><span class="line">A[1] = A[0] + A[1]</span><br><span class="line">A[0] = A[1] + A[0]</span><br></pre></td></tr></table></figure>
+<h2 id="Matrix-solution"><a href="#Matrix-solution" class="headerlink" title="Matrix solution"></a>Matrix solution</h2><h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h3><p>$$<br> A = \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right]<br>$$</p>
+<p>$$<br> A^2 = \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right] *<br>  \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right] =<br>  \left[<br> \begin{matrix}<br>   2 &amp; 1 \<br>   1 &amp; 1<br>  \end{matrix}<br>  \right] =<br>  \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right]<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">A = | 1  1 | = | a2  a1 |</span><br><span class="line">    | 1  0 |   | a1  a0 |</span><br><span class="line"></span><br><span class="line">A^2 = | 1  1 |    | 1  1 |      | 2  1 |   | a3  a2 |</span><br><span class="line">      | 1  0 | *  | 1  0 |  =   | 1  1 | = | a2  a1 |</span><br><span class="line"></span><br><span class="line">A^3 = | 2  1 |    | 1  1 |      | 3  2 |   | a4  a5 |</span><br><span class="line">      | 1  1 | *  | 1  0 |  =   | 2  1 | = | a3  a2 |           </span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"> A^k = | a(k+1)  ak   |   </span><br><span class="line">       | ak      ak-1 |</span><br></pre></td></tr></table></figure>
+<h3 id="Time-Complexity-2"><a href="#Time-Complexity-2" class="headerlink" title="Time Complexity"></a>Time Complexity</h3><p>Basic: <code>O(n)</code></p>
+<p>Optimized: <code>O(logn)</code></p>
+<h3 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h3><p>Since we are dealing with A^n, the optimized time complexity of pow(x, n) is  <code>O(logn)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A^n =   |A(n/2)^2         | n is even</span><br><span class="line">        |A((n-1)/2)^2 * A | n is odd</span><br><span class="line"></span><br><span class="line">A^64 = (A^32)^2 = ((A^16))^2^2 = A^(2^6)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Asymptotic-Notation"><a href="#Asymptotic-Notation" class="headerlink" title="Asymptotic Notation"></a>Asymptotic Notation</h2><h3 id="Comparison-of-each-notation"><a href="#Comparison-of-each-notation" class="headerlink" title="Comparison of each notation"></a>Comparison of each notation</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">Compare Function Growth</th>
+<th>Compare Numbers</th>
+<th>f(n) = 5n</th>
+<th>g(n) = n^2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">O</td>
+<td>&lt;=</td>
+<td>f(n) = O(g(n))</td>
+</tr>
+<tr>
+<td style="text-align:left">o</td>
+<td>&lt;</td>
+<td>f(n) = o(g(n)</td>
+</tr>
+<tr>
+<td style="text-align:left">Θ</td>
+<td>=</td>
+<td>for f(n) = 100n</td>
+<td>and g(n) = n + 100</td>
+</tr>
+<tr>
+<td style="text-align:left">Ω</td>
+<td>&gt;=</td>
+<td>f(n) = Ω(g(n))</td>
+<td>f(n) = Θ(g(n))</td>
+</tr>
+<tr>
+<td style="text-align:left">ω</td>
+<td>&gt;=</td>
+<td>f(n) = ω(g(n))</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Mathematical-Derivation"><a href="#Mathematical-Derivation" class="headerlink" title="Mathematical Derivation"></a>Mathematical Derivation</h3><p><strong>f(n) = O(g(n))</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iff exists constants C and n0</span><br><span class="line">s.t. when n &gt; n0, f(n) &lt;= C * g(n)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lim(n-&gt;inf) f(n)/g(n) =     0           | fn = O/o(g(n))</span><br><span class="line">                            constant    | fn = O/Θ/Ω(g(n))</span><br><span class="line">                            inf         | fn = Ω/ω(g(n))</span><br></pre></td></tr></table></figure>
+<p>Practice:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">lim(n-&gt;inf) (100n)/(n+100) = 100 </span><br><span class="line">fn = O/Θ/Ω(g(n))</span><br><span class="line"></span><br><span class="line">f(n) = nlgn   g(n) = n^2</span><br><span class="line">f(n) = O/o(g(n))</span><br><span class="line"></span><br><span class="line">f(n) = 2^n   g(n) = 3^n</span><br><span class="line">f(n) = O/o(g(n))</span><br><span class="line">lim(n-&gt;inf) f(n)/g(n) = lim(n-&gt;inf) (2/3)^n = 0</span><br><span class="line"></span><br><span class="line">f(n) = n+3   g(n) = 2 * sqrt(n)</span><br><span class="line">f(n) = Ω/ω(g(n))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f(n) = log2(n)   g(n) = log3(n)</span><br><span class="line">f(n) = Ω/ω/Θ(g(n))</span><br><span class="line">lim(n-&gt;inf) f(n)/g(n) = lim(n-&gt;inf) log2n/log3n = log3/log2</span><br><span class="line"></span><br><span class="line">f(n) = (logn)^2   g(n) = log(n^2) = 2logn</span><br><span class="line">f(n) = Ω/ω(g(n))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Master’s-Theorem"><a href="#Master’s-Theorem" class="headerlink" title="Master’s Theorem"></a>Master’s Theorem</h2><h3 id="Idea-of-merge-sort"><a href="#Idea-of-merge-sort" class="headerlink" title="Idea of merge sort"></a>Idea of merge sort</h3><p>T(n) = 2T(n/2) + n</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">             T(n) n                         | n</span><br><span class="line">          /          \</span><br><span class="line">    T(n/2) n/2          T(n/2) n/2          | n</span><br><span class="line">   /     \           /     \</span><br><span class="line">T(n/4)   T(n/4)    T(n/4)   T(n/4)          | n</span><br><span class="line">            ......</span><br><span class="line">T(1)    T(1)    T(1)    T(1) ...            | n</span><br></pre></td></tr></table></figure>
+<h3 id="Time-Complexity-of-merge-sort"><a href="#Time-Complexity-of-merge-sort" class="headerlink" title="Time Complexity of merge sort"></a>Time Complexity of merge sort</h3><p>T(n) = height <em> T(level) = logn </em> n = nlogn</p>
+<h3 id="Master’s-Theorem-1"><a href="#Master’s-Theorem-1" class="headerlink" title="Master’s Theorem"></a>Master’s Theorem</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">T(n) = a * T(n/b) + n^c, where a, b, c are constants</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">T(n) = 2 * T(n/2) + n</span><br><span class="line">T(n) = 8 * T(n/2) + n^2</span><br><span class="line">T(n) = T(n/2) + 1</span><br><span class="line">T(n) = T(n/3) + T(2n/3) + n  (Not master&apos;s theorem)</span><br></pre></td></tr></table></figure>
+<p>Now we have to compare logb(a) and c</p>
+<ul>
+<li>logb(a) &gt; c T(n) = Θ(n^(logb(a)))</li>
+<li>logb(a) = c T(n) = Θ((n^c) * logn)</li>
+<li>logb(a) &lt; c T(n) = Θ(n^c)</li>
+</ul>
+<p>Practice<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T(n) = T(n/2) + 1   T(n) = Θ(lgn)</span><br><span class="line">T(n) = 8T(n/2) + n^2   T(n) = Θ(n^3)</span><br><span class="line">T(n) = 7T(n/2) + n^2   T(n) = Θ(n^(log2(7)))</span><br><span class="line">T(n) = 4T(n/2) + n^2   T(n) = Θ(n^2 * (log2n))</span><br><span class="line">T(n) = T(n/2) + n  T(n) = Θ(n)</span><br><span class="line">T(n) = T(n-1) + n  (Not master&apos;s theorem)</span><br></pre></td></tr></table></figure></p>
+<p>Draw the Recursion Tree of the last one<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Recursion Tree of T(n) = T(n-1) + n </span><br><span class="line"></span><br><span class="line">        T(n) n</span><br><span class="line">        T(n-1) n-1</span><br><span class="line">        T(n-2) n-2</span><br><span class="line">        ...</span><br><span class="line">        T(1) 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T(n) = 1 + 2 + 3 + ... + n = n(n+1)/2</span><br><span class="line">Θ(n) = n^2</span><br></pre></td></tr></table></figure></p>
+<h3 id="Other-useful-Summation-Formula"><a href="#Other-useful-Summation-Formula" class="headerlink" title="Other useful Summation Formula"></a>Other useful Summation Formula</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 + 2 + 3 + .. + n = n(n+1)/2</span><br><span class="line"></span><br><span class="line">q^0 + q^1 + q^2 + ... q^n = (q^(n+1) -1)/(q-1)</span><br><span class="line"></span><br><span class="line">1 + 1/2 + 1/3 + ... + 1/n = Θ(ln(n))</span><br></pre></td></tr></table></figure>
+<h3 id="Normal-case"><a href="#Normal-case" class="headerlink" title="Normal case"></a>Normal case</h3><p>T(n) = T(n/3) + T(2n/3) + n</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">             T(n) n                         | n</span><br><span class="line">          /          \</span><br><span class="line">    T(n/3) n/3        T(2n/3)  2n/3         | n</span><br><span class="line">   /     \           /     \</span><br><span class="line">T(n/9)   T(2n/9)    T(2n/9)   T(4n/9)       | n</span><br><span class="line">            ......</span><br><span class="line">T(1)    T(1)    T(1)    T(1) ...            | n</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">            /\</span><br><span class="line">           /  \</span><br><span class="line">          /____\</span><br><span class="line">          \     \</span><br><span class="line">            \    \</span><br><span class="line">              \   \</span><br><span class="line">                \_\</span><br><span class="line"></span><br><span class="line">left side = log3n</span><br><span class="line">right side = log3/2(n)</span><br><span class="line"></span><br><span class="line">T(n) = num of nodes in this recursion tree</span><br><span class="line"></span><br><span class="line">n * log3(n) &lt;= T(n) &lt;= n * log3/2(n)</span><br></pre></td></tr></table></figure>
+<h3 id="Time-Complexity-of-Normal-recursion-tree"><a href="#Time-Complexity-of-Normal-recursion-tree" class="headerlink" title="Time Complexity of Normal recursion tree"></a>Time Complexity of Normal recursion tree</h3><p><code>T(n) = Θ(nlgn)</code></p>
+<h3 id="Some-examples"><a href="#Some-examples" class="headerlink" title="Some examples"></a>Some examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">T(n) = T(n/4) + T(3n/4) + n             T(n) = Θ(nlgn)</span><br><span class="line">T(n) = T(n/1000) + T(999n/1000) + n     T(n) = Θ(nlgn)</span><br><span class="line">T(n) = T(n-1) + T(1) + n                T(n) = Θ(n^2)</span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h2><h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Given array like</span><br><span class="line"></span><br><span class="line">|1 |9 |2 |8 |3 |8 |7 |5 |6 |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Choose a pivot, put all num &lt; pivot in left, others in right</span><br><span class="line"></span><br><span class="line">|    nums &lt;=  pivot  |pivot|  nums &gt; pivot   |</span><br><span class="line"></span><br><span class="line">The process is partition(A[], i, j)</span><br></pre></td></tr></table></figure>
+<h3 id="Code-3"><a href="#Code-3" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">QuickSort(<span class="keyword">int</span>[] A, <span class="keyword">int</span> i, <span class="keyword">int</span> j) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= j) &#123;<span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> pivot_pos = Partition(A, i, j);</span><br><span class="line">    QuickSort(A, i, pivot_pos-<span class="number">1</span>);</span><br><span class="line">    QuickSort(A, pivot_pos+<span class="number">1</span>, j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Time-Complexity-3"><a href="#Time-Complexity-3" class="headerlink" title="Time Complexity"></a>Time Complexity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T(n) = 2T(n/2) + n = Θ(nlogn)</span><br><span class="line">T(n) = T(n/3) + T(2n/3) + n = Θ(nlogn)</span><br><span class="line">T(n) = T(n/1000) + T(999n/1000) + n = Θ(nlogn)</span><br><span class="line"></span><br><span class="line">Worst Case</span><br><span class="line">T(n) = T(n-1) + n = Θ(n^2)</span><br></pre></td></tr></table></figure>
+<p>Average <code>T(n) = Θ(nlogn)</code></p>
+<p>Worst   <code>T(n) = Θ(n^2)</code></p>
+<h3 id="Code-of-Partition"><a href="#Code-of-Partition" class="headerlink" title="Code of Partition"></a>Code of Partition</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pivot = A[j]</span><br><span class="line">| i |  ... | p | p+1 |  ...  | cur |  ...  | j |</span><br><span class="line"></span><br><span class="line">i - p: &lt;= pivot</span><br><span class="line">p - p+1: &gt; pivot</span><br><span class="line">cur: current pointer</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>A[cur] &gt; pivot  </p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cur += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>A[cur] &lt;= pivot  </p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">swap(A[cur], A[p+<span class="number">1</span>]);</span><br><span class="line">p += <span class="number">1</span>;</span><br><span class="line">cur += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition(<span class="keyword">int</span>[] A, <span class="keyword">int</span> i, <span class="keyword">int</span> j) &#123;</span><br><span class="line">    <span class="keyword">int</span> pivot = A[j];</span><br><span class="line">    <span class="keyword">int</span> p = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cur = i; cur &lt;= j-<span class="number">1</span>; cur++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[cur] &lt;= pivot) &#123;</span><br><span class="line">            swap(A[cur], A[p+<span class="number">1</span>]);</span><br><span class="line">            p += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(A[j], A[p+<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> p+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Class-2-05-13-2019"><a href="#Class-2-05-13-2019" class="headerlink" title="Class 2 05/13/2019"></a>Class 2 05/13/2019</h1><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><h3 id="Review-of-quicksort"><a href="#Review-of-quicksort" class="headerlink" title="Review of quicksort"></a>Review of quicksort</h3><h3 id="Stable-Sort"><a href="#Stable-Sort" class="headerlink" title="Stable Sort"></a>Stable Sort</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">| ... | 5(1) | ...  |  ...  | 5(2) |  ...  |</span><br><span class="line"></span><br><span class="line">After sort</span><br><span class="line"></span><br><span class="line">| ... | 5(1)| 5(2) |  ...  |</span><br><span class="line"></span><br><span class="line">If two 5 are still in their relative positions, then this is a stable sort.</span><br></pre></td></tr></table></figure>
+<h3 id="Runtime-of-Quick-Sort"><a href="#Runtime-of-Quick-Sort" class="headerlink" title="Runtime of Quick Sort"></a>Runtime of Quick Sort</h3><p>Runtime: </p>
+<p>Average: $O(nlogn)$<br>Worst: $O(n^2)$</p>
+<p>The worst case is $T(n) = T(n-1) + n$</p>
+<h3 id="Pivot-Selection"><a href="#Pivot-Selection" class="headerlink" title="Pivot Selection"></a>Pivot Selection</h3><ul>
+<li>Median of Three</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| i | ... | (i+j)/2 | ... |  j  |</span><br></pre></td></tr></table></figure>
+<h2 id="Heap-Sort"><a href="#Heap-Sort" class="headerlink" title="Heap Sort"></a>Heap Sort</h2><h3 id="Types-of-Heap"><a href="#Types-of-Heap" class="headerlink" title="Types of Heap"></a>Types of Heap</h3><ol>
+<li>Max Heap</li>
+<li>Min Heap</li>
+</ol>
+<h3 id="Operations-of-Heap"><a href="#Operations-of-Heap" class="headerlink" title="Operations (of Heap)"></a>Operations (of Heap)</h3><ul>
+<li>Insert(E)    $O(logn)$</li>
+<li>getMax()          $O(1)$</li>
+<li>deleteMax()       $O(logn)$</li>
+</ul>
+<h3 id="Operations-of-Sorted-Array"><a href="#Operations-of-Sorted-Array" class="headerlink" title="Operations (of Sorted Array)"></a>Operations (of Sorted Array)</h3><ul>
+<li>Insert(E)    $O(n)$</li>
+<li>getMax()          $O(1)$</li>
+<li>deleteMax()       $O(1)$</li>
+</ul>
+<h3 id="Comparison-of-array-and-heap"><a href="#Comparison-of-array-and-heap" class="headerlink" title="Comparison of array and heap"></a>Comparison of array and heap</h3><p>The worst time of heap operation is logn.</p>
+<p>However, A sorted array takes On time to insert, which is the bottleneck of the overall time complexity. </p>
+<h3 id="Logical-View-and-Physical-View"><a href="#Logical-View-and-Physical-View" class="headerlink" title="Logical View and Physical View"></a>Logical View and Physical View</h3><p><strong>Logical View</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">          7(1)</span><br><span class="line">         /    \</span><br><span class="line">      3(2)      6(3)</span><br><span class="line">     /   \       /</span><br><span class="line">   1(4)  2(5)  5(6)</span><br><span class="line"></span><br><span class="line">Almost-Full Binary Tree</span><br><span class="line">Parent must be &gt;= both children</span><br></pre></td></tr></table></figure></p>
+<p><strong>Physical View</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">               1   2   3   4   5   6</span><br><span class="line">Array        | 7 | 3 | 6 | 1 | 2 | 5 |</span><br></pre></td></tr></table></figure>
+<h3 id="helper-functions-of-heap"><a href="#helper-functions-of-heap" class="headerlink" title="helper functions of heap"></a>helper functions of heap</h3><p>i is the index</p>
+<p><code>parent(i)</code> = i / 2<br><code>leftChild(i)</code> = i <em> 2<br><code>rightChild</code> = i </em> 2+1</p>
+<h3 id="getMax-O-1"><a href="#getMax-O-1" class="headerlink" title="getMax() O(1)"></a>getMax() O(1)</h3><p>getMax() - return A[1]</p>
+<h3 id="insert-O-logn"><a href="#insert-O-logn" class="headerlink" title="insert() O(logn)"></a>insert() O(logn)</h3><p><strong>Case 1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">           7(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      6(3)</span><br><span class="line">     /   \       / \</span><br><span class="line">   1(4)  2(5)  5(6) 3(7)</span><br><span class="line"></span><br><span class="line">No need to adjust</span><br></pre></td></tr></table></figure>
+<p><strong>Case 2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">           7(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      6(3)</span><br><span class="line">     /   \       / \</span><br><span class="line">   1(4)  2(5)  5(6) 8(7)</span><br><span class="line"></span><br><span class="line">Swap 8 with 6</span><br><span class="line"></span><br><span class="line">           7(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      8(3)</span><br><span class="line">     /   \       / \</span><br><span class="line">   1(4)  2(5)  5(6) 6(7)</span><br><span class="line"></span><br><span class="line">Swap 7 with 8</span><br><span class="line"></span><br><span class="line">           8(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      7(3)</span><br><span class="line">     /   \       / \</span><br><span class="line">   1(4)  2(5)  5(6) 6(7)  </span><br><span class="line"></span><br><span class="line">Complete inserting.</span><br><span class="line"></span><br><span class="line">                        1   2   3   4   5   6   7</span><br><span class="line">Array(after insert)   | 8 | 3 | 7 | 1 | 2 | 5 | 6|</span><br></pre></td></tr></table></figure>
+<h3 id="Code-of-insert"><a href="#Code-of-insert" class="headerlink" title="Code of insert()"></a>Code of insert()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> e)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// increase the size n of the heap</span></span><br><span class="line">    n += <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// insert the item to heap A</span></span><br><span class="line">    A[n] = e;</span><br><span class="line">    <span class="comment">// Adjust from index i=n</span></span><br><span class="line">    <span class="keyword">int</span> i = n;</span><br><span class="line">    <span class="comment">// if cur node has a parent and the parent is smaller</span></span><br><span class="line">    <span class="keyword">while</span> (parent(i) &gt; <span class="number">0</span> &amp;&amp; A[parent(i)] &lt; A[i]) &#123;</span><br><span class="line">        swap(A[parent(i)], A[i]);</span><br><span class="line">        i = parent(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="deleteMax"><a href="#deleteMax" class="headerlink" title="deleteMax()"></a>deleteMax()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">           8(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      7(3)</span><br><span class="line">     /   \       / \</span><br><span class="line">   1(4)  2(5)  5(6) 6(7)  </span><br><span class="line"></span><br><span class="line">Swap 6 with 8, and delete 8</span><br><span class="line"></span><br><span class="line">           6(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      7(3)</span><br><span class="line">     /   \       / </span><br><span class="line">   1(4)  2(5)  5(6) </span><br><span class="line"></span><br><span class="line">                      1   2   3   4   5   6  </span><br><span class="line">Array(after swap)   | 6 | 3 | 7 | 1 | 2 | 5 | </span><br><span class="line"></span><br><span class="line">Swap 6 with 7</span><br><span class="line"></span><br><span class="line">           7(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      6(3)</span><br><span class="line">     /   \       / </span><br><span class="line">   1(4)  2(5)  5(6) </span><br><span class="line"></span><br><span class="line">                      1   2   3   4   5   6  </span><br><span class="line">Array(after swap)   | 7 | 3 | 6 | 1 | 2 | 5 | </span><br><span class="line"></span><br><span class="line">Heap is balanced. </span><br><span class="line">deleteMax() completed.</span><br></pre></td></tr></table></figure>
+<h3 id="heapify"><a href="#heapify" class="headerlink" title="heapify()"></a>heapify()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">           6(1)</span><br><span class="line">         /      \</span><br><span class="line">      3(2)      7(3)</span><br><span class="line">     /   \       / </span><br><span class="line">   1(4)  2(5)  5(6)  </span><br><span class="line"></span><br><span class="line">The subTree of root 3 is a MaxHeap</span><br><span class="line">The subTree of root 7 is a MaxHeap</span><br><span class="line">However, the tree of root 6 is not a MaxHeap.</span><br><span class="line">Now we need the heapify().</span><br></pre></td></tr></table></figure>
+<h3 id="Code-of-heapify"><a href="#Code-of-heapify" class="headerlink" title="Code of heapify()"></a>Code of heapify()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapify</span><span class="params">(<span class="keyword">int</span>[] A, i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> largest = i;</span><br><span class="line">    <span class="comment">// Find the largest of cur root(i) and its children</span></span><br><span class="line">    <span class="comment">// if left child exists and left child is bigger than cur root</span></span><br><span class="line">    <span class="keyword">if</span> (leftChild(i) &lt;= n &amp;&amp; A[leftChild(i)] &gt; A[largest]) &#123;</span><br><span class="line">        largest = leftChild(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if left child exists and left child is bigger than cur root</span></span><br><span class="line">    <span class="keyword">if</span> (rightChild(i) &lt;= n &amp;&amp; A[rightChild(i)] &gt; A[largest]) &#123;</span><br><span class="line">        largest = rightChild(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// check largest</span></span><br><span class="line">    <span class="keyword">if</span> (largest == i) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// let the cur largest node be the root</span></span><br><span class="line">    swap(A[i], A[largest]);</span><br><span class="line">    <span class="comment">// continue heapifying down the swapped node recursively</span></span><br><span class="line">    heapify(A, largest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Code-of-deleteMax"><a href="#Code-of-deleteMax" class="headerlink" title="Code of deleteMax()"></a>Code of deleteMax()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteMax</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// swap the cur root with the last node</span></span><br><span class="line">    swap(A[<span class="number">1</span>], A[n]);</span><br><span class="line">    <span class="comment">// delete the last node</span></span><br><span class="line">    n -= <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// heapify the whole heap</span></span><br><span class="line">    heapify(A, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Heap-Sort-1"><a href="#Heap-Sort-1" class="headerlink" title="Heap Sort"></a>Heap Sort</h3><p><strong>Max Heap</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">          1   2   3   4   5   6  </span><br><span class="line">Array   | 7 | 3 | 6 | 1 | 2 | 5 | </span><br><span class="line"></span><br><span class="line">Pretend we are deleting the max val.(deleteMax())</span><br><span class="line"></span><br><span class="line">                         1   2   3   4   5 || 6  </span><br><span class="line">Array(after deleted)   | 5 | 3 | 6 | 1 | 2 || 7(max) |</span><br><span class="line">Now we get the biggest node in the tail of the array.</span><br><span class="line">continue sort the rest.</span><br></pre></td></tr></table></figure></p>
+<h3 id="Code-of-Heap-Sort"><a href="#Code-of-Heap-Sort" class="headerlink" title="Code of Heap Sort"></a>Code of Heap Sort</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">        deleteHeap(A, <span class="number">1</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### makeHeap()</span><br><span class="line"></span><br><span class="line">Solution <span class="number">1</span> insert n times `O(nlogn)`</span><br><span class="line"></span><br><span class="line">Solution <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<pre><code>      6(1)
+    /      \
+ 3(2)      7(3)
+/   \       / 
+</code></pre><p>   1(4)  2(5)  5(6)  </p>
+<p>n = 3 is the last non-trivil node<br>we heapify the 7, 3, 6 nodes, where we ensure that all children are valid heap.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Code of makeHeap()</span><br><span class="line"></span><br><span class="line">```Java</span><br><span class="line">// n/2 means the last non-trivil node in the heap</span><br><span class="line">for (int i = n/2; i &gt;=1; i--) &#123;</span><br><span class="line">    heapify(A, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Example-of-heap-sort"><a href="#Example-of-heap-sort" class="headerlink" title="Example of heap sort"></a>Example of heap sort</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">First, make this into a heap.</span><br><span class="line"></span><br><span class="line">           9(1)</span><br><span class="line">         /      \</span><br><span class="line">      2(2)      6(3)</span><br><span class="line">     /   \       / </span><br><span class="line">   1(4)  4(5)  3(6)  </span><br><span class="line"></span><br><span class="line">          1   2   3   4   5   6  </span><br><span class="line">Array   | 9 | 2 | 6 | 1 | 4 | 3 |    </span><br><span class="line"></span><br><span class="line">call makeHeap() on 6</span><br><span class="line"></span><br><span class="line">call makeHeap() on 2</span><br><span class="line"></span><br><span class="line">           9(1)</span><br><span class="line">         /      \</span><br><span class="line">      4(2)      6(3)</span><br><span class="line">     /   \       / </span><br><span class="line">   1(4)  2(5)  3(6)  </span><br><span class="line"></span><br><span class="line">          1   2   3   4   5   6  </span><br><span class="line">Array   | 9 | 4 | 6 | 1 | 2 | 3 |  </span><br><span class="line"></span><br><span class="line">call deleteHeap() on 9</span><br><span class="line"></span><br><span class="line">           3(1)</span><br><span class="line">         /      \</span><br><span class="line">      4(2)      6(3)</span><br><span class="line">     /   \       </span><br><span class="line">   1(4)  2(5)  </span><br><span class="line"></span><br><span class="line">          1   2   3   4   5    6  </span><br><span class="line">Array   | 3 | 4 | 6 | 1 | 2 || 9 |</span><br><span class="line"></span><br><span class="line">call heapify() on 3</span><br><span class="line"></span><br><span class="line">           6(1)</span><br><span class="line">         /      \</span><br><span class="line">      4(2)      3(3)</span><br><span class="line">     /   \       </span><br><span class="line">   1(4)  2(5)  </span><br><span class="line"></span><br><span class="line">          1   2   3   4   5    6  </span><br><span class="line">Array   | 6 | 4 | 3 | 1 | 2 || 9 |</span><br><span class="line"></span><br><span class="line">call deleteHeap() on 6</span><br><span class="line"></span><br><span class="line">           2(1)</span><br><span class="line">         /      \</span><br><span class="line">      4(2)      3(3)</span><br><span class="line">     /       </span><br><span class="line">   1(4)  </span><br><span class="line"></span><br><span class="line">          1   2   3   4    5   6  </span><br><span class="line">Array   | 2 | 4 | 3 | 1 || 6 | 9 |</span><br><span class="line"></span><br><span class="line">call heapify() on 2</span><br><span class="line"></span><br><span class="line">           4(1)</span><br><span class="line">         /      \</span><br><span class="line">      2(2)      3(3)</span><br><span class="line">     /         </span><br><span class="line">   1(4)   </span><br><span class="line"></span><br><span class="line">          1   2   3   4    5   6  </span><br><span class="line">Array   | 4 | 2 | 3 | 1 || 6 | 9 |</span><br><span class="line"></span><br><span class="line">call deleteHeap() on 4</span><br><span class="line"></span><br><span class="line">           1(1)</span><br><span class="line">         /      \</span><br><span class="line">      2(2)      3(3)</span><br><span class="line">     /          </span><br><span class="line">   4(4)   </span><br><span class="line"></span><br><span class="line">          1   2   3    4   5   6  </span><br><span class="line">Array   | 1 | 2 | 3 || 4 | 6 | 9 |</span><br><span class="line">...</span><br><span class="line">The array is sorted.</span><br></pre></td></tr></table></figure>
+<h2 id="Sorting-Algorithms"><a href="#Sorting-Algorithms" class="headerlink" title="Sorting Algorithms"></a>Sorting Algorithms</h2><h3 id="Types-of-sorting-algorithms"><a href="#Types-of-sorting-algorithms" class="headerlink" title="Types of sorting algorithms"></a>Types of sorting algorithms</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">Algorithm</th>
+<th style="text-align:center">Time Complexity</th>
+<th style="text-align:center">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Quick Sort</td>
+<td style="text-align:center">$O(nlogn)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Merge Sort</td>
+<td style="text-align:center">$O(nlogn)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Heap Sort</td>
+<td style="text-align:center">$O(nlogn)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Bubble Sort</td>
+<td style="text-align:center">$O(n^2)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Insertion SOrt</td>
+<td style="text-align:center">$O(n^2)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Selection SOrt</td>
+<td style="text-align:center">$O(n^2)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Counting SOrt</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">Non-comparison based</td>
+</tr>
+<tr>
+<td style="text-align:center">Radix SOrt</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">Non-comparison based</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Theorem-of-comparison-based-sorting-algorithm"><a href="#Theorem-of-comparison-based-sorting-algorithm" class="headerlink" title="Theorem of comparison based sorting algorithm"></a>Theorem of comparison based sorting algorithm</h3><p>Comparison based sorting algorithm always run in $Ω(nlogn)$.</p>
+<h2 id="Counting-Sort"><a href="#Counting-Sort" class="headerlink" title="Counting Sort"></a>Counting Sort</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Assume we have array A</span><br><span class="line">The input nums should satisfy 0 &lt;= A[i] &lt;= k</span><br><span class="line"></span><br><span class="line">input   A    | 2 | 1 | 3 | 5 | 4 | 2 | 1 | 0 | 3 |</span><br><span class="line"></span><br><span class="line">               0   1   2   3   4   5</span><br><span class="line">bucket  B    | 1 | 2 | 2 | 2 | 1 | 1 |</span><br><span class="line"></span><br><span class="line">               0   1   2   3   4   5</span><br><span class="line">bucket  B&apos;   | 1 | 3 | 5 | 7 | 8 | 9 |</span><br><span class="line"></span><br><span class="line">output  C    | 0 | 1 | 1 | 2 | 2 | 3 | 3 | 4 | 5 |</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### Code of Counting Sort</span><br><span class="line"></span><br><span class="line">```Java</span><br><span class="line">//Step of counting sort</span><br><span class="line">// fill the num in the buckets</span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">    B[A[i]] += 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// indicates where the curr digit ends in the ouput array</span><br><span class="line">for (int i = 0; i &lt;= k; i++) &#123;</span><br><span class="line">    B[i] += B[i-1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// fill the digit into the array</span><br><span class="line">for (int i = n-1; i &gt;= 0; i--) &#123;</span><br><span class="line">    C[B[A[i]]] = A[i];</span><br><span class="line">    B[A[i]] -= 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return C;</span><br></pre></td></tr></table></figure>
+<h3 id="problems-of-Counting-Sort"><a href="#problems-of-Counting-Sort" class="headerlink" title="problems of Counting Sort"></a>problems of Counting Sort</h3><p>Q: Why 0-based?<br>A: To represent the case where the input has 0.</p>
+<p>Q: what happened if we have negative input?<br>A: Map the input to the form we want. e.g. <code>[-10, 10] -&gt; [0, 20]</code></p>
+<p>Q: Is this algorithm stable?<br>A: In this case, yes.</p>
+<h3 id="Analysis-of-Counting-Sort"><a href="#Analysis-of-Counting-Sort" class="headerlink" title="Analysis of Counting Sort"></a>Analysis of Counting Sort</h3><p>Run time: $O(n+k)$<br>Space: $O(k)$</p>
+<h2 id="Radix-Sort"><a href="#Radix-Sort" class="headerlink" title="Radix Sort"></a>Radix Sort</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Also known as digit sort.</p>
+<p>Only for positive base 10 integers.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Use the counting sort to sort the colomn</span><br><span class="line"></span><br><span class="line">100      100     100       4</span><br><span class="line"> 23       41       4      13</span><br><span class="line">123      512     512      23  </span><br><span class="line">512       23     013      41</span><br><span class="line">  4  =&gt;  123 =&gt;   23  =&gt; 100</span><br><span class="line"> 13       13     123     123</span><br><span class="line"> 41        4      41     512</span><br><span class="line">999      999     999     999</span><br></pre></td></tr></table></figure>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>d is the number of digits, k is the range of the inputs(e.g. 32 bit integer)<br>Run time: $O((n+k)d)$<br>Space:</p>
+<p>e.g.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">32-bit int</span><br><span class="line">| 8-bit | 8-bit | 8-bit | 8-bit |  </span><br><span class="line">d = 4 times of counting sort</span><br><span class="line">k = 2^8 = 256</span><br></pre></td></tr></table></figure></p>
+<h1 id="Class-3-05-20-2019"><a href="#Class-3-05-20-2019" class="headerlink" title="Class 3 05/20/2019"></a>Class 3 05/20/2019</h1><h2 id="Questions-about-Order-Statistics"><a href="#Questions-about-Order-Statistics" class="headerlink" title="Questions about Order Statistics"></a>Questions about Order Statistics</h2><p>Given a collection of integers, get the min/max value, median, 25% element, rth smallest element, etc.</p>
+<p>Question: How do we find the rth smallest element?</p>
+<h3 id="Solution1-Sort-the-array"><a href="#Solution1-Sort-the-array" class="headerlink" title="Solution1 Sort the array"></a>Solution1 Sort the array</h3><ol>
+<li>sort array</li>
+<li>return A[k]</li>
+</ol>
+<p>The run time should be O(nlgn)</p>
+<h3 id="Solution2-Based-Partition"><a href="#Solution2-Based-Partition" class="headerlink" title="Solution2 Based Partition"></a>Solution2 Based Partition</h3><h4 id="Idea-1"><a href="#Idea-1" class="headerlink" title="Idea"></a>Idea</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Definition 2</span><br><span class="line"></span><br><span class="line">| 1 | ... | start | ... | end | ... | 10 |</span><br><span class="line"></span><br><span class="line">A   | 1 | 2 | 3 | 6 | 7 | 5 | 4 |</span><br><span class="line"></span><br><span class="line">pos = partition(A, 1, 7, 5)</span><br><span class="line">pos = 3</span><br><span class="line"></span><br><span class="line">if we get the 3 as the pivot position, which means we still have to find 2 more elements</span><br><span class="line"></span><br><span class="line">we continue searching on kth(A, 4, 7, 2)</span><br></pre></td></tr></table></figure>
+<h4 id="Code-4"><a href="#Code-4" class="headerlink" title="Code"></a>Code</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// definition 1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findKth</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pos = partition(A, <span class="number">1</span>, n);</span><br><span class="line">    <span class="keyword">if</span> (pos == k) <span class="keyword">return</span> A[k];</span><br><span class="line">    <span class="keyword">if</span> (pos &gt; k) <span class="keyword">return</span> findKth(A, <span class="number">1</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (pos &lt; k) <span class="keyword">return</span> findKth(A, pos+<span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// definition 2</span></span><br><span class="line"><span class="comment">// global index</span></span><br><span class="line"><span class="comment">// rank of number with A[begin...end]</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findKth</span><span class="params">(<span class="keyword">int</span>[]A, <span class="keyword">int</span> begin, <span class="keyword">int</span> end, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h4><p>$ T(n) = T(n/2) + n = O(n)$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example </span><br><span class="line">T(n) = T(2n/3) + n = O(n)</span><br><span class="line">T(n) = T(99n/100) + n = O(n)</span><br><span class="line">T(n) = T(n-1) + n = O(n^2)</span><br></pre></td></tr></table></figure>
+<h2 id="Find-Top-K"><a href="#Find-Top-K" class="headerlink" title="Find Top K"></a>Find Top K</h2><h3 id="Solution-1-Sort-the-array"><a href="#Solution-1-Sort-the-array" class="headerlink" title="Solution 1 Sort the array"></a>Solution 1 Sort the array</h3><ol>
+<li>Sort the array</li>
+<li>return A[1:k]</li>
+</ol>
+<p>Time: $ O(nlogn) $</p>
+<h3 id="Solution-2-findKth-algorithm"><a href="#Solution-2-findKth-algorithm" class="headerlink" title="Solution 2 findKth algorithm"></a>Solution 2 findKth algorithm</h3><ol>
+<li>partition</li>
+<li>return A[1:k]</li>
+</ol>
+<p>Time: $ O(n) $</p>
+<h3 id="Solution-3-Min-Heap"><a href="#Solution-3-Min-Heap" class="headerlink" title="Solution 3 Min Heap"></a>Solution 3 Min Heap</h3><ol>
+<li>make a min heap</li>
+<li>delete k times</li>
+</ol>
+<p>Time: $O(n + klogn)$ (depends on which one’s bigger)</p>
+<h3 id="Solution-4-Max-Heap"><a href="#Solution-4-Max-Heap" class="headerlink" title="Solution 4 Max Heap"></a>Solution 4 Max Heap</h3><ol>
+<li>m make a max heap A[1:k]</li>
+<li></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = k+<span class="number">1</span>, ... , n)</span><br><span class="line">    <span class="keyword">if</span>(A[i] &lt; getMax()) &#123;</span><br><span class="line">        deleteMax();</span><br><span class="line">        insert(A[i]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Time: $ O(k + (n-k)*logk)$<br>When n is large, $ O(nlogk) $<br>When k is large, $ O(k) $</p>
+<h2 id="Big-Integer-Multiplication"><a href="#Big-Integer-Multiplication" class="headerlink" title="Big Integer Multiplication"></a>Big Integer Multiplication</h2><p>for integers of 32-bit(unsigned), we have a range of $ (0, 2^{32}-1) $, which are 10 digits</p>
+<p>for integers of 64-bit(unsigned), we have a range of $ (0, 2^{64}-1) $, which are 10 digits</p>
+<h3 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h3><p>An encryption algorithm using large integer multiplication.</p>
+<h3 id="Idea-2"><a href="#Idea-2" class="headerlink" title="Idea"></a>Idea</h3><p>Input: 2 integers of n-bits<br>Example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    1110 = 14</span><br><span class="line">*   0101 =  5</span><br><span class="line"> 1000110 = 70</span><br></pre></td></tr></table></figure></p>
+<p>Time : $ O(n^2) $</p>
+<h3 id="Divide-and-Conquer"><a href="#Divide-and-Conquer" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><p>a can be split to | a1 | a2|</p>
+<p>for example,<br>a = 1110 = $ 11 * 2^2 + 10 $ (Shift left by 2 bit)</p>
+<p>Therefore,<br>$ a = a_1<em>2^{n/2} + a_2 $<br>$ b = b_1</em>2^{n/2} + b_2 $<br>$ a <em> b = a_1b_1</em>2^{n} + (a_1b_2+a_2b_1)2^{n/2} + a_2b_2 $</p>
+<p>We divide the 1 problem to 4 child problem.</p>
+<p><code>T(n) = 4T(n/2) + n(sum 2 n-bit integers) = O(n^2)</code></p>
+<h3 id="Improve-the-running-time"><a href="#Improve-the-running-time" class="headerlink" title="Improve the running time"></a>Improve the running time</h3><p>$ p_1 = a_1b_1$<br>$ p_2 = a_2b_2$<br>$ p_3 = (a_1+a_2)(b_1+b_2)$<br>$ a <em> b = p_1</em>2^{n} + (p_3-p_1-p_2)2^{n/2} + p_2 $</p>
+<p>We can save the Time to </p>
+<p><code>T(n) = 3T(n/2) + n</code><br>$ T(n) = O(n^{log_2{3}}) $</p>
+<h3 id="Extra-cases"><a href="#Extra-cases" class="headerlink" title="Extra cases"></a>Extra cases</h3><p>What if 2 integers are not with the same digits?<br>Pad the 0’s to the nearest exponential of 2.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">For example</span><br><span class="line">110 -&gt; 0110</span><br><span class="line">10010 -&gt; 00010010</span><br></pre></td></tr></table></figure>
+<h2 id="Square-Matrix-Multiplication"><a href="#Square-Matrix-Multiplication" class="headerlink" title="Square Matrix Multiplication"></a>Square Matrix Multiplication</h2><h3 id="Idea-3"><a href="#Idea-3" class="headerlink" title="Idea"></a>Idea</h3><p>input: 2 n*n matrices</p>
+<p>$<br> X = \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right]_{n*n}<br>$</p>
+<p>$Y = \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right]_{n*n}<br>$</p>
+<p>$ X*Y = O(n^3) $</p>
+<p>Here we use the block of matrix to Divide &amp; Conquer</p>
+<p>$<br> X = \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right]_{n*n} = \left[<br> \begin{matrix}<br>   A &amp; B \<br>   C &amp; D<br>  \end{matrix}<br>  \right]<br>$</p>
+<p>$Y = \left[<br> \begin{matrix}<br>   1 &amp; 1 \<br>   1 &amp; 0<br>  \end{matrix}<br>  \right]_{n*n} = \left[<br> \begin{matrix}<br>   E &amp; F \<br>   G &amp; H<br>  \end{matrix}<br>  \right]<br>$</p>
+<p>$ X<em>Y = \left[<br> \begin{matrix}<br>   {AE+BG} &amp; {AF+BH} \<br>   {CE+DG} &amp; {CF+DH}<br>  \end{matrix}<br>  \right]_{n</em>n}<br>$</p>
+<p>Therefore, $ T(n) = 8T(\frac{n}{2}) + n^2 = O(n^3)$</p>
+<h3 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h3><p>$ X<em>Y = \left[<br> \begin{matrix}<br>   {AE+BG} &amp; {AF+BH} \<br>   {CE+DG} &amp; {CF+DH}<br>  \end{matrix}<br>  \right]_{n</em>n} = \left[<br> \begin{matrix}<br>   {Q} &amp; {R} \<br>   {S} &amp; {T}<br>  \end{matrix}<br>  \right]<br>$</p>
+<p>$Assume:$<br>$P_1 = A(F-H)$<br>$P_2 = H(A+B)$<br>$P_3 = E(C+D)$<br>$P_4 = D(G-E)$<br>$P_5 = (A+D)(E+H)$<br>$P_6 = (B-D)(G+H)$<br>$P_7 = (A-C)(E+F)$<br>$Q = P_4 + P_5 - P_2 + P_6$<br>$R = P_1 + P_2$<br>$S = P_3 + P_4$<br>$T = P_1 + P_5 - P_3 - P_7$</p>
+<p>$ X*Y = \left[<br> \begin{matrix}<br>   {AE+BG} &amp; {AF+BH} \<br>   {CE+DG} &amp; {CF+DH}<br>  \end{matrix}<br>  \right] = \left[<br> \begin{matrix}<br>   {P_4 + P_5 - P_2 + P_6} &amp; {P_1 + P_2} \<br>   {P_3 + P_4} &amp; {P_1 + P_5 - P_3 - P_7}<br>  \end{matrix}<br>  \right]<br>$</p>
+<p>Therefore, $ T(n) = 7T(\frac{n}{2}) + n^2 = O(n^3)$, Successfully optimized.</p>
+<h2 id="Counting-Inversions"><a href="#Counting-Inversions" class="headerlink" title="Counting Inversions"></a>Counting Inversions</h2><h3 id="Idea-4"><a href="#Idea-4" class="headerlink" title="Idea"></a>Idea</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Inversion: if i &lt; j &amp;&amp; A[i] &gt; A[j], then (i, j) is an inversion.</span><br><span class="line"></span><br><span class="line">If my favorite list is [1, 2, 3], num of inversion is 0</span><br><span class="line">If list is [2, 1, 3], num of inversion is 1</span><br><span class="line">If list is [2, 3, 1], num of inversion is 2</span><br><span class="line">If list is [3, 2, 1], num of inversion is 3, we have a completely different taste</span><br></pre></td></tr></table></figure>
+<p>Max num of inversions of a n list is $ C^{2}_{n} = O(n^2) $</p>
+<h3 id="Code-5"><a href="#Code-5" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Brute force</span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;=n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt;=n; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i] &gt; A[j]) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Better-Implementation"><a href="#Better-Implementation" class="headerlink" title="Better Implementation"></a>Better Implementation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        1         n/2 n/2+1       n</span><br><span class="line">A       |      x     |       y    |</span><br><span class="line"></span><br><span class="line">num of cross inversions + x + y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        begin        mid mid+1      end</span><br><span class="line">A       |     1  3  5   |  0  2  6   |</span><br><span class="line">              p            q</span><br><span class="line"></span><br><span class="line">given A[p] = 1, A[q] = 0, A[p] &gt; A[q], we have inv += 3, q++</span><br><span class="line">A[p] &lt; A[q], p++</span><br><span class="line">A[q] &lt; A[p], inv += 2, q++</span><br><span class="line">A[p] &lt; A[q], p++</span><br><span class="line">A[p] &lt; A[q], p++, end</span><br></pre></td></tr></table></figure>
+<h3 id="Code-6"><a href="#Code-6" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CountInv</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= end) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = (mid + end) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> x = CountInv(A, begin, mid);</span><br><span class="line">    <span class="keyword">int</span> y = CountInv(A, mid+<span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">int</span> z = CrossInv(A, begin, mid, end);</span><br><span class="line">    <span class="keyword">return</span> x + y + z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// o nlogn time</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CrossInv</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> begin, <span class="keyword">int</span> mid, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    sort(A, begin, mid);</span><br><span class="line">    sort(A, mid+<span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">int</span> p = begin, q = mid + <span class="number">1</span>, count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (p &lt;= mid &amp;&amp; q &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[p] &lt; A[q]) p++;</span><br><span class="line">        <span class="keyword">else</span> count += mid - p+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Analysis-3"><a href="#Analysis-3" class="headerlink" title="Analysis"></a>Analysis</h3><p>$ T(n) = 2T(\frac{n}{2}) + nlogn /= O(nlognlogn)$</p>
+<h3 id="Optimization-1"><a href="#Optimization-1" class="headerlink" title="Optimization"></a>Optimization</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CountInv</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= end) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = (mid + end) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> x = CountInv(A, begin, mid); <span class="comment">// sort the left</span></span><br><span class="line">    <span class="keyword">int</span> y = CountInv(A, mid+<span class="number">1</span>, end); <span class="comment">// sort the right</span></span><br><span class="line">    <span class="keyword">int</span> z = CrossInv(A, begin, mid, end); <span class="comment">// count the cross</span></span><br><span class="line">    <span class="comment">//merge left and right </span></span><br><span class="line">    merge(A, begin, mid, end);</span><br><span class="line">    <span class="keyword">return</span> x + y + z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// on time</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CrossInv</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> begin, <span class="keyword">int</span> mid, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = begin, q = mid + <span class="number">1</span>, count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (p &lt;= mid &amp;&amp; q &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[p] &lt; A[q]) p++;</span><br><span class="line">        <span class="keyword">else</span> count += mid - p+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$ T(n) = 2T(\frac{n}{2}) + n = O(nlogn)$</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">        | 7 | 2 | 3 | 4 | 1 | 6 | 5 | 8 |</span><br><span class="line">        | 2 | 3 | 4 | 7 | 1 | 6 | 5 | 8 |</span><br><span class="line">                    /    \ </span><br><span class="line">           3                    </span><br><span class="line">  | 2 | 7 | 3 | 4 |         | 1 | 6 | 5 | 8 |</span><br><span class="line"></span><br><span class="line">    /       \                   /       \</span><br><span class="line">   1         0                 </span><br><span class="line">| 7 | 2 |  | 3 | 4 |        | 1 | 6 |   | 5 | 8 |</span><br></pre></td></tr></table></figure>
+<h1 id="Class-4-06-03-2019"><a href="#Class-4-06-03-2019" class="headerlink" title="Class 4 06/03/2019"></a>Class 4 06/03/2019</h1><h2 id="Binary-Search-Tree-and-Hashtable"><a href="#Binary-Search-Tree-and-Hashtable" class="headerlink" title="Binary Search Tree and Hashtable"></a>Binary Search Tree and Hashtable</h2><h3 id="Difference-between-two-data-structures"><a href="#Difference-between-two-data-structures" class="headerlink" title="Difference between two data structures"></a>Difference between two data structures</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">Hashing</th>
+<th style="text-align:center">BST</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">h</td>
+<td style="text-align:center">insert(key,value)</td>
+</tr>
+<tr>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">h</td>
+<td style="text-align:center">lookup(key)</td>
+</tr>
+<tr>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">h</td>
+<td style="text-align:center">delete(key)</td>
+</tr>
+<tr>
+<td style="text-align:center">amartized running time</td>
+<td style="text-align:center">O(logn) basically</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">support traversing by ordered keys</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Binary-Search-Tree"><a href="#Binary-Search-Tree" class="headerlink" title="Binary Search Tree"></a>Binary Search Tree</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    Node left;</span><br><span class="line">    Node right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">     5</span><br><span class="line">   /   \</span><br><span class="line">  3     8</span><br><span class="line">   \</span><br><span class="line">    4</span><br><span class="line">This is a BST</span><br><span class="line"></span><br><span class="line">     5</span><br><span class="line">   /   \</span><br><span class="line">  3     8</span><br><span class="line">   \</span><br><span class="line">    6</span><br><span class="line">This is not a BST</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Left subtree is BST</li>
+<li>Right subtree is BST</li>
+<li>root.key &gt; all keys in left subtree<br>and root.key &lt; all keys in right subtree</li>
+</ol>
+<h3 id="Tree-Traversals"><a href="#Tree-Traversals" class="headerlink" title="Tree Traversals"></a>Tree Traversals</h3><ol>
+<li>Level-order </li>
+<li>Pre-order </li>
+<li>Post-order </li>
+<li>In-order </li>
+</ol>
+<h4 id="Level-order-Traversal"><a href="#Level-order-Traversal" class="headerlink" title="Level-order Traversal"></a>Level-order Traversal</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LevelOrder</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">    Queue&lt;Node&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    q.offer(root);</span><br><span class="line">    <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">        Node cur = q.poll();</span><br><span class="line">        <span class="comment">// processing on cur; print cur.key;</span></span><br><span class="line">        <span class="keyword">if</span> (cur.left != <span class="keyword">null</span>) q.offer(cur.left);</span><br><span class="line">        <span class="keyword">if</span> (cur.right != <span class="keyword">null</span>) q.offer(cur.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Right-Side-View-Question"><a href="#Right-Side-View-Question" class="headerlink" title="Right Side View Question"></a>Right Side View Question</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">     5</span><br><span class="line">   /   \</span><br><span class="line">  3     8</span><br><span class="line">   \</span><br><span class="line">    4</span><br><span class="line">we get the right side view as [5, 8, 4]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// we can just modify the original code by</span></span><br><span class="line">cur, curLevel = q.dequeue();</span><br><span class="line">res[cur_level] = cur.key</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// level order traversal </span></span><br><span class="line">    <span class="comment">// on time on space</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">rightSideView</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> res;</span><br><span class="line">        LinkedList&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offerLast(root);</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                TreeNode cur = queue.pollFirst();</span><br><span class="line">                <span class="keyword">if</span> (cur.left != <span class="keyword">null</span>) queue.offerLast(cur.left);</span><br><span class="line">                <span class="keyword">if</span> (cur.right != <span class="keyword">null</span>) queue.offerLast(cur.right);</span><br><span class="line">                temp = cur.val;</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(temp);</span><br><span class="line">            size = queue.size();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Pre-order-Traversal"><a href="#Pre-order-Traversal" class="headerlink" title="Pre-order Traversal"></a>Pre-order Traversal</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(Node cur)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    Process(cur);</span><br><span class="line">    PreOrder(cur.left);</span><br><span class="line">    PreOrder(cur.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="In-order-Traversal"><a href="#In-order-Traversal" class="headerlink" title="In-order Traversal"></a>In-order Traversal</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">     5</span><br><span class="line">   /   \</span><br><span class="line">  3     8</span><br><span class="line">   \</span><br><span class="line">    4</span><br><span class="line">we get the inorder node list as [3, 4, 5, 8], which is  sorted.</span><br></pre></td></tr></table></figure>
+<h3 id="Represent-duplicate-keys-in-BST"><a href="#Represent-duplicate-keys-in-BST" class="headerlink" title="Represent duplicate keys in BST"></a>Represent duplicate keys in BST</h3><h4 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h4><p>Has to support root &gt;= all left and root &lt; all right.</p>
+<ol>
+<li>MultiSet</li>
+<li>MultiMap</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">       5</span><br><span class="line">     /   \</span><br><span class="line">    5     8</span><br><span class="line">  /</span><br><span class="line">  3     </span><br><span class="line">   \</span><br><span class="line">    4</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">### Implementation</span><br><span class="line">#### Lookup</span><br><span class="line">```java</span><br><span class="line">boolean Lookup(Node cur, int key) &#123;</span><br><span class="line">    if (cur == null) return false;</span><br><span class="line">    if (cur.key == key) return true;</span><br><span class="line">    if (cur.key &lt; key) return Lookup(cur.right, key);</span><br><span class="line">    return Lookup(cur.left, key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node <span class="title">insert</span><span class="params">(Node cur, <span class="keyword">int</span> key, String val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val);</span><br><span class="line">    <span class="keyword">if</span> (key == cur.key) cur.val = val;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (key &lt; cur.key) &#123;</span><br><span class="line">        cur.left = insert(cur.left, key, val);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cur.right = insert(cur.right, key, val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h4><pre><code>          5
+        /   \
+       3     6
+     /  \
+    2    4
+
+Delete 5(2 children)
+
+          4
+        /   \
+       3     6
+     /  
+    2    
+</code></pre><p><strong>Case 1: No children</strong><br>update parent’s reference</p>
+<p><strong>Case 2: Single child</strong><br>Parent pointing to child</p>
+<p><strong>Case 2: two children</strong></p>
+<ol>
+<li>find predecessor p</li>
+<li>swap</li>
+<li>delete recursively</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/03/Google Bigtable/" rel="next" title="Google Bigtable">
+                <i class="fa fa-chevron-left"></i> Google Bigtable
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Anda Luo</p>
+              <div class="site-description motion-element" itemprop="description">Notes of study, work and life</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Luorinz" title="GitHub &rarr; https://github.com/Luorinz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:luorinz@gmail.com" title="E-Mail &rarr; mailto:luorinz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-1-05-06-2019"><span class="nav-number">1.</span> <span class="nav-text">Class 1 05/06/2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fibonacci-numbers"><span class="nav-number">1.1.</span> <span class="nav-text">Fibonacci numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fibonacci-numbers-Exponential-Algorithm"><span class="nav-number">1.1.1.</span> <span class="nav-text">Fibonacci numbers (Exponential Algorithm)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-number">1.1.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Complexity"><span class="nav-number">1.1.3.</span> <span class="nav-text">Time Complexity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recursion-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">Recursion Tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Linear algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Complexity-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Time Complexity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-space-algorithm"><span class="nav-number">1.4.</span> <span class="nav-text">Constant space algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.4.2.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-solution"><span class="nav-number">1.5.</span> <span class="nav-text">Matrix solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea"><span class="nav-number">1.5.1.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Complexity-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">Time Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strategy"><span class="nav-number">1.5.3.</span> <span class="nav-text">Strategy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Asymptotic-Notation"><span class="nav-number">1.6.</span> <span class="nav-text">Asymptotic Notation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-of-each-notation"><span class="nav-number">1.6.1.</span> <span class="nav-text">Comparison of each notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathematical-Derivation"><span class="nav-number">1.6.2.</span> <span class="nav-text">Mathematical Derivation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Master’s-Theorem"><span class="nav-number">1.7.</span> <span class="nav-text">Master’s Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-of-merge-sort"><span class="nav-number">1.7.1.</span> <span class="nav-text">Idea of merge sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Complexity-of-merge-sort"><span class="nav-number">1.7.2.</span> <span class="nav-text">Time Complexity of merge sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Master’s-Theorem-1"><span class="nav-number">1.7.3.</span> <span class="nav-text">Master’s Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-useful-Summation-Formula"><span class="nav-number">1.7.4.</span> <span class="nav-text">Other useful Summation Formula</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normal-case"><span class="nav-number">1.7.5.</span> <span class="nav-text">Normal case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Complexity-of-Normal-recursion-tree"><span class="nav-number">1.7.6.</span> <span class="nav-text">Time Complexity of Normal recursion tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-examples"><span class="nav-number">1.7.7.</span> <span class="nav-text">Some examples</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Sort"><span class="nav-number">1.8.</span> <span class="nav-text">Quick Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition"><span class="nav-number">1.8.1.</span> <span class="nav-text">Partition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-3"><span class="nav-number">1.8.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Complexity-3"><span class="nav-number">1.8.3.</span> <span class="nav-text">Time Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-of-Partition"><span class="nav-number">1.8.4.</span> <span class="nav-text">Code of Partition</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-2-05-13-2019"><span class="nav-number">2.</span> <span class="nav-text">Class 2 05/13/2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Review"><span class="nav-number">2.1.</span> <span class="nav-text">Review</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Review-of-quicksort"><span class="nav-number">2.1.1.</span> <span class="nav-text">Review of quicksort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stable-Sort"><span class="nav-number">2.1.2.</span> <span class="nav-text">Stable Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime-of-Quick-Sort"><span class="nav-number">2.1.3.</span> <span class="nav-text">Runtime of Quick Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pivot-Selection"><span class="nav-number">2.1.4.</span> <span class="nav-text">Pivot Selection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heap-Sort"><span class="nav-number">2.2.</span> <span class="nav-text">Heap Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Types-of-Heap"><span class="nav-number">2.2.1.</span> <span class="nav-text">Types of Heap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operations-of-Heap"><span class="nav-number">2.2.2.</span> <span class="nav-text">Operations (of Heap)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operations-of-Sorted-Array"><span class="nav-number">2.2.3.</span> <span class="nav-text">Operations (of Sorted Array)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-of-array-and-heap"><span class="nav-number">2.2.4.</span> <span class="nav-text">Comparison of array and heap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logical-View-and-Physical-View"><span class="nav-number">2.2.5.</span> <span class="nav-text">Logical View and Physical View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#helper-functions-of-heap"><span class="nav-number">2.2.6.</span> <span class="nav-text">helper functions of heap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getMax-O-1"><span class="nav-number">2.2.7.</span> <span class="nav-text">getMax() O(1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert-O-logn"><span class="nav-number">2.2.8.</span> <span class="nav-text">insert() O(logn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-of-insert"><span class="nav-number">2.2.9.</span> <span class="nav-text">Code of insert()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deleteMax"><span class="nav-number">2.2.10.</span> <span class="nav-text">deleteMax()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heapify"><span class="nav-number">2.2.11.</span> <span class="nav-text">heapify()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-of-heapify"><span class="nav-number">2.2.12.</span> <span class="nav-text">Code of heapify()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-of-deleteMax"><span class="nav-number">2.2.13.</span> <span class="nav-text">Code of deleteMax()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap-Sort-1"><span class="nav-number">2.2.14.</span> <span class="nav-text">Heap Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-of-Heap-Sort"><span class="nav-number">2.2.15.</span> <span class="nav-text">Code of Heap Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-of-heap-sort"><span class="nav-number">2.2.16.</span> <span class="nav-text">Example of heap sort</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sorting-Algorithms"><span class="nav-number">2.3.</span> <span class="nav-text">Sorting Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Types-of-sorting-algorithms"><span class="nav-number">2.3.1.</span> <span class="nav-text">Types of sorting algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-of-comparison-based-sorting-algorithm"><span class="nav-number">2.3.2.</span> <span class="nav-text">Theorem of comparison based sorting algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-Sort"><span class="nav-number">2.4.</span> <span class="nav-text">Counting Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problems-of-Counting-Sort"><span class="nav-number">2.4.1.</span> <span class="nav-text">problems of Counting Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-of-Counting-Sort"><span class="nav-number">2.4.2.</span> <span class="nav-text">Analysis of Counting Sort</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Radix-Sort"><span class="nav-number">2.5.</span> <span class="nav-text">Radix Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">2.5.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.5.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-1"><span class="nav-number">2.5.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-3-05-20-2019"><span class="nav-number">3.</span> <span class="nav-text">Class 3 05/20/2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Questions-about-Order-Statistics"><span class="nav-number">3.1.</span> <span class="nav-text">Questions about Order Statistics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution1-Sort-the-array"><span class="nav-number">3.1.1.</span> <span class="nav-text">Solution1 Sort the array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution2-Based-Partition"><span class="nav-number">3.1.2.</span> <span class="nav-text">Solution2 Based Partition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Idea-1"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-4"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Analysis-2"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Find-Top-K"><span class="nav-number">3.2.</span> <span class="nav-text">Find Top K</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1-Sort-the-array"><span class="nav-number">3.2.1.</span> <span class="nav-text">Solution 1 Sort the array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2-findKth-algorithm"><span class="nav-number">3.2.2.</span> <span class="nav-text">Solution 2 findKth algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-3-Min-Heap"><span class="nav-number">3.2.3.</span> <span class="nav-text">Solution 3 Min Heap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-4-Max-Heap"><span class="nav-number">3.2.4.</span> <span class="nav-text">Solution 4 Max Heap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-Integer-Multiplication"><span class="nav-number">3.3.</span> <span class="nav-text">Big Integer Multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA"><span class="nav-number">3.3.1.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-2"><span class="nav-number">3.3.2.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-and-Conquer"><span class="nav-number">3.3.3.</span> <span class="nav-text">Divide and Conquer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improve-the-running-time"><span class="nav-number">3.3.4.</span> <span class="nav-text">Improve the running time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extra-cases"><span class="nav-number">3.3.5.</span> <span class="nav-text">Extra cases</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Square-Matrix-Multiplication"><span class="nav-number">3.4.</span> <span class="nav-text">Square Matrix Multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-3"><span class="nav-number">3.4.1.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization"><span class="nav-number">3.4.2.</span> <span class="nav-text">Optimization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-Inversions"><span class="nav-number">3.5.</span> <span class="nav-text">Counting Inversions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-4"><span class="nav-number">3.5.1.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-5"><span class="nav-number">3.5.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Better-Implementation"><span class="nav-number">3.5.3.</span> <span class="nav-text">Better Implementation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-6"><span class="nav-number">3.5.4.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-3"><span class="nav-number">3.5.5.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-1"><span class="nav-number">3.5.6.</span> <span class="nav-text">Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-number">3.5.7.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-4-06-03-2019"><span class="nav-number">4.</span> <span class="nav-text">Class 4 06/03/2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-Search-Tree-and-Hashtable"><span class="nav-number">4.1.</span> <span class="nav-text">Binary Search Tree and Hashtable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Difference-between-two-data-structures"><span class="nav-number">4.1.1.</span> <span class="nav-text">Difference between two data structures</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-Search-Tree"><span class="nav-number">4.2.</span> <span class="nav-text">Binary Search Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">4.2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-Traversals"><span class="nav-number">4.2.2.</span> <span class="nav-text">Tree Traversals</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Level-order-Traversal"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">Level-order Traversal</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Right-Side-View-Question"><span class="nav-number">4.2.2.1.1.</span> <span class="nav-text">Right Side View Question</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pre-order-Traversal"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">Pre-order Traversal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#In-order-Traversal"><span class="nav-number">4.2.2.3.</span> <span class="nav-text">In-order Traversal</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Represent-duplicate-keys-in-BST"><span class="nav-number">4.2.3.</span> <span class="nav-text">Represent duplicate keys in BST</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Requirement"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">Requirement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">4.2.3.2.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">4.2.3.3.</span> <span class="nav-text">Delete</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+    <div id="sidebar-dimmer"></div>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Anda Luo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">202k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">3:04</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

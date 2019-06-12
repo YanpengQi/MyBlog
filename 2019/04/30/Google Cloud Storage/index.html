@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":true},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Google Cloud Storage (GCS)Question: we have so many storage, why we still need GCS (Google Cloud Storage)? Answer: to store unstructured data (file, image, video, etc.) and implement CDN. BigTable, Bi">
+<meta name="keywords" content="Web,Cloud,Go,GAE,GCS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Cloud Storage">
+<meta property="og:url" content="http://yoursite.com/2019/04/30/Google Cloud Storage/index.html">
+<meta property="og:site_name" content="Anda">
+<meta property="og:description" content="Google Cloud Storage (GCS)Question: we have so many storage, why we still need GCS (Google Cloud Storage)? Answer: to store unstructured data (file, image, video, etc.) and implement CDN. BigTable, Bi">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-29-11-31-29.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-30-9-46-47.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-30-9-47-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-30-14-5-10.png">
+<meta property="og:updated_time" content="2019-04-30T21:43:55.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Cloud Storage">
+<meta name="twitter:description" content="Google Cloud Storage (GCS)Question: we have so many storage, why we still need GCS (Google Cloud Storage)? Answer: to store unstructured data (file, image, video, etc.) and implement CDN. BigTable, Bi">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-29-11-31-29.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/30/Google Cloud Storage/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Google Cloud Storage | Anda</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Anda</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Notes of study, work and life</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">2</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">26</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/Luorinz" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/30/Google Cloud Storage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anda Luo">
+      <meta itemprop="description" content="Notes of study, work and life">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anda">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Google Cloud Storage
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-30 21:41:51 / Modified: 14:43:55" itemprop="dateCreated datePublished" datetime="2019-04-30T21:41:51-07:00">2019-04-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">13k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">12 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Google-Cloud-Storage-GCS"><a href="#Google-Cloud-Storage-GCS" class="headerlink" title="Google Cloud Storage (GCS)"></a>Google Cloud Storage (GCS)</h1><p><strong>Question</strong>: we have so many storage, why we still need GCS (Google Cloud Storage)?</p>
+<p><strong>Answer</strong>: to store unstructured data (file, image, video, etc.) and implement CDN. BigTable, BigQuery, ElasticSearch are all for structured data.</p>
+<p><strong>Definition</strong>: A Powerful, Simple and Cost Effective Object Storage Service.<br>Think it as Google Drive, Dropbox, Amazon S3.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><h3 id="Durable"><a href="#Durable" class="headerlink" title="Durable"></a>Durable</h3><ul>
+<li>Google Cloud Storage is designed for 99.999999999% durability. It stores data redundantly, with automatic checksums to ensure data integrity. With Multi-Regional storage, your data is maintained in geographically distinct locations.<h3 id="Available"><a href="#Available" class="headerlink" title="Available"></a>Available</h3></li>
+<li>All storage classes offer very high availability around the world.<h3 id="Scalable"><a href="#Scalable" class="headerlink" title="Scalable"></a>Scalable</h3><h3 id="Inexpensive"><a href="#Inexpensive" class="headerlink" title="Inexpensive"></a>Inexpensive</h3></li>
+<li>Good to store unstructured data like image, file, video, etc.</li>
+</ul>
+<h1 id="Content-Delivery-Network-CDN"><a href="#Content-Delivery-Network-CDN" class="headerlink" title="Content Delivery Network (CDN)"></a>Content Delivery Network (CDN)</h1><p>A content delivery network or content distribution network (CDN) is a geographically distributed network of proxy servers and their data centers. </p>
+<p>CDN, offers an efficient, cost-effective way of reducing both network I/O costs and content delivery latency for regularly accessed website assets. </p>
+<p>A CDN can be understood as group of geographically distributed caches, with each cache locaœted in one of several global points of presence. </p>
+<p>Traditional server vs. CDN<br><img src="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-29-11-31-29.png" alt="4. Google Cloud Storage-2019-4-29-11-31-29.png"><br>Companies like Akamai, Cloudflare, etc.</p>
+<h1 id="GCS-Bucket"><a href="#GCS-Bucket" class="headerlink" title="GCS Bucket"></a>GCS Bucket</h1><p>First of all, we will need a gcs bucket. Why we need this bucket? It’s like a folder which we can have files (images/videos posted from user) in it. Bucket == Folder.</p>
+<p>Open your console.cloud.google.com and choose Storage -&gt; Browser.</p>
+<p>Then click ‘<code>CREATE BUCKET</code>’ to create a new bucket.</p>
+<p>Pick a name for it, starts with <code>post-images-</code>, and the suffix is your project ID to avoid any conflict with other users. If used by others, add a random number. For example, I use <code>post-images-75015</code> while yours will be different. Please remember this bucket name and we will use it later. </p>
+<p>When asked about ‘<code>Default storage class</code>’, Regional is ok as our servers (GAE flex) are in us-central-<em>, so we may put this bucket in us-central-</em> too. Click ‘<code>save</code>’ to save your changes. </p>
+<h1 id="Multi-part-Form"><a href="#Multi-part-Form" class="headerlink" title="Multi part Form"></a>Multi part Form</h1><p>A HTTP multipart request is a HTTP request that HTTP clients construct to send files and data over to a HTTP Server. </p>
+<p>It is commonly used by browsers and HTTP clients to upload files to the server. </p>
+<p>The content type “<code>application/x-www-form-urlencoded</code>“ is inefficient for sending large quantities of binary data or text containing non-ASCII characters. </p>
+<p>The content type “<code>multipart/form-data</code>“ should be used for submitting forms that contain files, non-ASCII data, and binary data.</p>
+<p>How to send multipart request in Postman?</p>
+<p><img src="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-30-9-46-47.png" alt="4. Google Cloud Storage-2019-4-30-9-46-47.png"></p>
+<p>How does it look like?</p>
+<p> <img src="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-30-9-47-2.png" alt="4. Google Cloud Storage-2019-4-30-9-47-2.png"></p>
+<p>How to parse multipart form in Go?</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span> <span class="title">ParseMultipartForm</span><span class="params">(maxMemory <span class="keyword">int64</span>)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><a href="https://golang.org/pkg/net/http/#Request.ParseMultipartForm" target="_blank" rel="noopener">https://golang.org/pkg/net/http/#Request.ParseMultipartForm</a></p>
+<p><a href="https://github.com/golang-samples/http/blob/master/fileupload/main.go" target="_blank" rel="noopener">https://github.com/golang-samples/http/blob/master/fileupload/main.go</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1MB</span></span><br><span class="line"><span class="keyword">const</span> MAX_MEMORY = <span class="number">1</span> * <span class="number">1024</span> * <span class="number">1024</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">upload</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> err := r.ParseMultipartForm(MAX_MEMORY); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">		http.Error(w, err.Error(), http.StatusForbidden)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> key, value := <span class="keyword">range</span> r.MultipartForm.Value &#123;</span><br><span class="line">		fmt.Fprintf(w, <span class="string">"%s:%s "</span>, key, value)</span><br><span class="line">		log.Printf(<span class="string">"%s:%s"</span>, key, value)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, fileHeaders := <span class="keyword">range</span> r.MultipartForm.File &#123;</span><br><span class="line">		<span class="keyword">for</span> _, fileHeader := <span class="keyword">range</span> fileHeaders &#123;</span><br><span class="line">			file, _ := fileHeader.Open()</span><br><span class="line">			path := fmt.Sprintf(<span class="string">"files/%s"</span>, fileHeader.Filename)</span><br><span class="line">			buf, _ := ioutil.ReadAll(file)</span><br><span class="line">			ioutil.WriteFile(path, buf, os.ModePerm)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	http.HandleFunc(<span class="string">"/upload"</span>, upload)</span><br><span class="line">	http.Handle(<span class="string">"/"</span>, http.FileServer(http.Dir(<span class="string">"static"</span>)))</span><br><span class="line">	log.Fatal(http.ListenAndServe(<span class="string">":8080"</span>, <span class="literal">nil</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Code-changes"><a href="#Code-changes" class="headerlink" title="Code changes"></a>Code changes</h1><p>Question: Why we need GCS in this project?<br>Answer: to save the image uploaded from user and serve it.</p>
+<p>Update handlerPost to support save image into GCS</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">      <span class="string">"context"</span></span><br><span class="line">      <span class="string">"cloud.google.com/go/storage"</span></span><br><span class="line">      <span class="comment">// other libs</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">      INDEX       = <span class="string">"around"</span></span><br><span class="line">      TYPE        = <span class="string">"post"</span></span><br><span class="line">      DISTANCE    = <span class="string">"200km"</span></span><br><span class="line">      PROJECT_ID  = <span class="string">"around-75015"</span></span><br><span class="line">      BT_INSTANCE = <span class="string">"around-post"</span></span><br><span class="line">      <span class="comment">// other configs</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// Needs to update this bucket based on your gcs bucket name.</span></span><br><span class="line">      BUCKET_NAME = <span class="string">"post-images-75015"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Post <span class="keyword">struct</span> &#123;</span><br><span class="line">      <span class="comment">// `json:"user"` is for the json parsing of this User field. Otherwise, by default it's 'User'.</span></span><br><span class="line">      User     <span class="keyword">string</span> <span class="string">`json:"user"`</span></span><br><span class="line">      Message  <span class="keyword">string</span>  <span class="string">`json:"message"`</span></span><br><span class="line">      Location Location <span class="string">`json:"location"`</span></span><br><span class="line">      Url    <span class="keyword">string</span> <span class="string">`json:"url"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handlerPost</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">      <span class="comment">// Other codes</span></span><br><span class="line">     w.Header().Set(<span class="string">"Content-Type"</span>, <span class="string">"application/json"</span>)</span><br><span class="line">     w.Header().Set(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>)</span><br><span class="line">     w.Header().Set(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Authorization"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 32 &lt;&lt; 20 is the maxMemory param for ParseMultipartForm, equals to 32MB (1MB = 1024 * 1024 bytes = 2^20 bytes)</span></span><br><span class="line">      <span class="comment">// After you call ParseMultipartForm, the file will be saved in the server memory with maxMemory size.</span></span><br><span class="line">      <span class="comment">// If the file size is larger than maxMemory, the rest of the data will be saved in a system temporary file.</span></span><br><span class="line">      r.ParseMultipartForm(<span class="number">32</span> &lt;&lt; <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Parse from form data.</span></span><br><span class="line">      fmt.Printf(<span class="string">"Received one post request %s\n"</span>, r.FormValue(<span class="string">"message"</span>))</span><br><span class="line">      lat, _ := strconv.ParseFloat(r.FormValue(<span class="string">"lat"</span>), <span class="number">64</span>)</span><br><span class="line">      lon, _ := strconv.ParseFloat(r.FormValue(<span class="string">"lon"</span>), <span class="number">64</span>)</span><br><span class="line">      p := &amp;Post&#123;</span><br><span class="line">             User:    <span class="string">"1111"</span>,</span><br><span class="line">             Message: r.FormValue(<span class="string">"message"</span>),</span><br><span class="line">             Location: Location&#123;</span><br><span class="line">                    Lat: lat,</span><br><span class="line">                    Lon: lon,</span><br><span class="line">             &#125;,</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      id := uuid.New()</span><br><span class="line"></span><br><span class="line">      file, _, err := r.FormFile(<span class="string">"image"</span>)</span><br><span class="line">      <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">             http.Error(w, <span class="string">"Image is not available"</span>, http.StatusInternalServerError)</span><br><span class="line">             fmt.Printf(<span class="string">"Image is not available %v.\n"</span>, err)</span><br><span class="line">             <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">defer</span> file.Close()</span><br><span class="line"></span><br><span class="line">      ctx := context.Background()</span><br><span class="line"></span><br><span class="line">     <span class="comment">// replace it with your real bucket name.</span></span><br><span class="line">      _, attrs, err := saveToGCS(ctx, file, BUCKET_NAME, id)</span><br><span class="line">      <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">             http.Error(w, <span class="string">"GCS is not setup"</span>, http.StatusInternalServerError)</span><br><span class="line">             fmt.Printf(<span class="string">"GCS is not setup %v\n"</span>, err)</span><br><span class="line">             <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Update the media link after saving to GCS.</span></span><br><span class="line">      p.Url = attrs.MediaLink</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Save to ES.</span></span><br><span class="line">      saveToES(p, id)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Save to BigTable.</span></span><br><span class="line">      <span class="comment">//saveToBigTable(p, id)</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saveToGCS</span><span class="params">(ctx context.Context, r io.Reader, bucketName, name <span class="keyword">string</span>)</span> <span class="params">(*storage.ObjectHandle, *storage.ObjectAttrs, error)</span></span> &#123;</span><br><span class="line">     <span class="comment">// Student questions</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Implement-saveToGCS"><a href="#Implement-saveToGCS" class="headerlink" title="Implement saveToGCS."></a>Implement saveToGCS.</h1><p>Google has provided a good example of writing objects to GCS. <a href="https://cloud.google.com/storage/docs/reference/libraries#client-libraries-install-go" target="_blank" rel="noopener">https://cloud.google.com/storage/docs/reference/libraries#client-libraries-install-go</a> </p>
+<p>Google example of open a client connection to GCS</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"fmt"</span></span><br><span class="line">        <span class="string">"log"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Imports the Google Cloud Storage client package.</span></span><br><span class="line">        <span class="string">"cloud.google.com/go/storage"</span></span><br><span class="line">        <span class="string">"golang.org/x/net/context"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        ctx := context.Background()</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Sets your Google Cloud Platform project ID.</span></span><br><span class="line">        projectID := <span class="string">"YOUR_PROJECT_ID"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Creates a client.</span></span><br><span class="line">        client, err := storage.NewClient(ctx)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                log.Fatalf(<span class="string">"Failed to create client: %v"</span>, err)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Sets the name for the new bucket.</span></span><br><span class="line">        bucketName := <span class="string">"my-new-bucket"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Creates a Bucket instance.</span></span><br><span class="line">        bucket := client.Bucket(bucketName)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Creates the new bucket.</span></span><br><span class="line">        <span class="keyword">if</span> err := bucket.Create(ctx, projectID, <span class="literal">nil</span>); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                log.Fatalf(<span class="string">"Failed to create bucket: %v"</span>, err)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fmt.Printf(<span class="string">"Bucket %v created.\n"</span>, bucketName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Google example of writing an object to GCS (copied from <a href="https://github.com/GoogleCloudPlatform/golang-samples/blob/master/storage/objects/main.go" target="_blank" rel="noopener">https://github.com/GoogleCloudPlatform/golang-samples/blob/master/storage/objects/main.go</a><br>) </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">write</span><span class="params">(client *storage.Client, bucket, object <span class="keyword">string</span>)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	ctx := context.Background()</span><br><span class="line">	<span class="comment">// [START upload_file]</span></span><br><span class="line">	f, err := os.Open(<span class="string">"notes.txt"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> f.Close()</span><br><span class="line"></span><br><span class="line">	wc := client.Bucket(bucket).Object(object).NewWriter(ctx)</span><br><span class="line">	<span class="keyword">if</span> _, err = io.Copy(wc, f); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err := wc.Close(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// [END upload_file]</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Answer: </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Save an image to GCS.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saveToGCS</span><span class="params">(ctx context.Context, r io.Reader, bucketName, name <span class="keyword">string</span>)</span> <span class="params">(*storage.ObjectHandle, *storage.ObjectAttrs, error)</span></span> &#123;</span><br><span class="line">      client, err := storage.NewClient(ctx)</span><br><span class="line">      <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, err</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">defer</span> client.Close()</span><br><span class="line"></span><br><span class="line">      bucket := client.Bucket(bucketName)</span><br><span class="line">      <span class="comment">// Next check if the bucket exists</span></span><br><span class="line">      <span class="keyword">if</span> _, err = bucket.Attrs(ctx); err != <span class="literal">nil</span> &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, err</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      obj := bucket.Object(name)</span><br><span class="line">      w := obj.NewWriter(ctx)</span><br><span class="line">      <span class="keyword">if</span> _, err := io.Copy(w, r); err != <span class="literal">nil</span> &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, err</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> err := w.Close(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, err</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">if</span> err := obj.ACL().Set(ctx, storage.AllUsers, storage.RoleReader); err != <span class="literal">nil</span> &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, err</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      attrs, err := obj.Attrs(ctx)</span><br><span class="line">      fmt.Printf(<span class="string">"Post is saved to GCS: %s\n"</span>, attrs.MediaLink)</span><br><span class="line">      <span class="keyword">return</span> obj, attrs, err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Remember to install package:</p>
+<p><code>go get -u cloud.google.com/go/storage</code></p>
+<blockquote>
+<p>这里遇到了迷之bug <code>error: elastic: Error 400 (Bad Request): failed to parse [type=mapper_parsing_exception]</code> 问题出在postman上面， 重新开个post或者试试把url的类型改成plain text</p>
+</blockquote>
+<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><h2 id="Local-test-on-your-own-computer"><a href="#Local-test-on-your-own-computer" class="headerlink" title="Local test (on your own computer)"></a>Local test (on your own computer)</h2><h3 id="cd-to-the-folder-where-you-have-main-go"><a href="#cd-to-the-folder-where-you-have-main-go" class="headerlink" title="cd to the folder where you have main.go"></a>cd to the folder where you have main.go</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run main.go</span><br></pre></td></tr></table></figure>
+<h3 id="Open-your-Postman-change-the-method-to-POST-in-the-url-enter-‘http-localhost-8080-post’"><a href="#Open-your-Postman-change-the-method-to-POST-in-the-url-enter-‘http-localhost-8080-post’" class="headerlink" title="Open your Postman, change the method to POST, in the url enter ‘http://localhost:8080/post’"></a>Open your Postman, change the method to POST, in the url enter ‘<a href="http://localhost:8080/post’" target="_blank" rel="noopener">http://localhost:8080/post’</a></h3><p><img src="https://raw.githubusercontent.com/Luorinz/images/master/4.%20Google%20Cloud%20Storage-2019-4-30-14-5-10.png" alt="4. Google Cloud Storage-2019-4-30-14-5-10.png"></p>
+<p>In the Body part, choose form-data, and then enter lat, lon, message and image. For image, the type is ‘file’ such that you may upload an image from your local storage. </p>
+<h3 id="Verify-the-search-API-is-working"><a href="#Verify-the-search-API-is-working" class="headerlink" title="Verify the search API is working"></a>Verify the search API is working</h3><p>Open Postman, change the method to GET, in the url change it to ‘<a href="http://localhost:8080/search?lat=37.5&amp;lon=-120.5&amp;range=200’" target="_blank" rel="noopener">http://localhost:8080/search?lat=37.5&amp;lon=-120.5&amp;range=200’</a></p>
+<p>Copy the url into your browser and download the image to verify that it’s the same image that you’ve downloaded. </p>
+<p>If you have any auth issue, try</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth application-default login</span><br></pre></td></tr></table></figure>
+<p>If you have permission problem, try</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R $(whoami):staff ~/.config/gcloud/</span><br></pre></td></tr></table></figure>
+<h1 id="Integration-test-TBD"><a href="#Integration-test-TBD" class="headerlink" title="Integration test (TBD)"></a>Integration test (TBD)</h1><h2 id="Remote-test-homework"><a href="#Remote-test-homework" class="headerlink" title="Remote test (homework)"></a>Remote test (homework)</h2><p>Commit your changes to github and then open a new cloud terminal. </p>
+<h3 id="Check-out-from-github"><a href="#Check-out-from-github" class="headerlink" title="Check out from github"></a>Check out from github</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+<h3 id="cd-to-your-folder-with-main-go-and-app-yaml"><a href="#cd-to-your-folder-with-main-go-and-app-yaml" class="headerlink" title="cd to your folder with main.go and app.yaml"></a>cd to your folder with main.go and app.yaml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud app deploy</span><br></pre></td></tr></table></figure>
+<p>Wait until the deployment is done</p>
+<h3 id="Open-Postman"><a href="#Open-Postman" class="headerlink" title="Open Postman."></a>Open Postman.</h3><p>Instead of using ‘<a href="http://localhost:8080’" target="_blank" rel="noopener">http://localhost:8080’</a> change it to your service url (without port) For example, ‘<a href="http://around-179500.appspot.com/post’" target="_blank" rel="noopener">http://around-179500.appspot.com/post’</a> and ‘<a href="http://around-179500.appspot.com/search?lat=37.5&amp;lon=-120.5&amp;range=200’" target="_blank" rel="noopener">http://around-179500.appspot.com/search?lat=37.5&amp;lon=-120.5&amp;range=200’</a> </p>
+<p>The others are the same</p>
+<h1 id="Cors"><a href="#Cors" class="headerlink" title="Cors"></a>Cors</h1><p><code>cross-origin sharing standard</code></p>
+<p>Pre-flight requests: You may have a content type like JSON, or some other custom header that’s triggering a pre-flight request, which your server may not be handling. </p>
+<p>Try adding this one, if you’re using the ever-common AJAX in your front-end: <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Requested-With" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Requested-With</a><br>Gorilla’s <code>handlers.CORS()</code> will set sane defaults to get the basics of CORS working for you;</p>
+<p> however, you can (and maybe should) take control in a more functional manner.<br><a href="https://stackoverflow.com/questions/40985920/making-golang-gorilla-cors-handler-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/40985920/making-golang-gorilla-cors-handler-work</a></p>
+<h2 id="Optional-Vim-go-plugin"><a href="#Optional-Vim-go-plugin" class="headerlink" title="(Optional) Vim go plugin:"></a>(Optional) Vim go plugin:</h2><p><a href="https://github.com/fatih/vim-go" target="_blank" rel="noopener">https://github.com/fatih/vim-go</a></p>
+<h1 id="Spam-and-Abuse-Detection"><a href="#Spam-and-Abuse-Detection" class="headerlink" title="Spam and Abuse Detection"></a>Spam and Abuse Detection</h1><p>Any user-facing IT company has to address the Spam and Abuse problem in production. </p>
+<p><strong>Question</strong>: Why our project needs to think about spam problem?</p>
+<p><strong>Answer</strong>:<br>Categories of Spam and Abuse in Industry<br>Racy/Nudity (Child Porn especially)</p>
+<ul>
+<li>Harassment or Hate Speech (n* word, etc.)</li>
+<li>Fake News (Facebook)</li>
+<li>Keyword Spam (Keyword stuffing)</li>
+<li>Drug Abuse</li>
+<li>Violence or Bully</li>
+<li>Spam</li>
+<li>Copycat (IP Infringement) </li>
+<li>Phishing (CEO Phishing for SSN)</li>
+<li>Privacy Leak<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2></li>
+<li>Keyword based (rule based) <ul>
+<li>n<em> words, s</em> words, f* words, etc.</li>
+</ul>
+</li>
+<li>Machine Learning Model (images and videos)<ul>
+<li>Open NSFW model </li>
+</ul>
+</li>
+<li>Geo location based <ul>
+<li>Strip clubs, etc.</li>
+</ul>
+</li>
+<li>User based<ul>
+<li>User ban</li>
+<li>User warning</li>
+<li>Aggregated user signals</li>
+</ul>
+</li>
+<li>User feedback<ul>
+<li>report</li>
+<li>Machine Learning</li>
+<li>Moderators</li>
+</ul>
+</li>
+<li>External channels<ul>
+<li>Internal users like employees</li>
+<li>Media coverage</li>
+</ul>
+</li>
+<li>Others</li>
+</ul>
+<p><strong>Question</strong>:<br>In our current design, we kind of spam filters we may enforce?</p>
+<p><strong>Answer</strong>: For example, keyword based spam filter</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/tags/Cloud/" rel="tag"># Cloud</a>
+          
+            <a href="/tags/Go/" rel="tag"># Go</a>
+          
+            <a href="/tags/GAE/" rel="tag"># GAE</a>
+          
+            <a href="/tags/GCS/" rel="tag"># GCS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/29/GAE Basic/" rel="next" title="GAE Basic">
+                <i class="fa fa-chevron-left"></i> GAE Basic
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/02/Authentication/" rel="prev" title="Authentication">
+                Authentication <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Anda Luo</p>
+              <div class="site-description motion-element" itemprop="description">Notes of study, work and life</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Luorinz" title="GitHub &rarr; https://github.com/Luorinz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:luorinz@gmail.com" title="E-Mail &rarr; mailto:luorinz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-Cloud-Storage-GCS"><span class="nav-number">1.</span> <span class="nav-text">Google Cloud Storage (GCS)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Features"><span class="nav-number">1.1.</span> <span class="nav-text">Features</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Durable"><span class="nav-number">1.1.1.</span> <span class="nav-text">Durable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Available"><span class="nav-number">1.1.2.</span> <span class="nav-text">Available</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scalable"><span class="nav-number">1.1.3.</span> <span class="nav-text">Scalable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inexpensive"><span class="nav-number">1.1.4.</span> <span class="nav-text">Inexpensive</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content-Delivery-Network-CDN"><span class="nav-number">2.</span> <span class="nav-text">Content Delivery Network (CDN)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCS-Bucket"><span class="nav-number">3.</span> <span class="nav-text">GCS Bucket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multi-part-Form"><span class="nav-number">4.</span> <span class="nav-text">Multi part Form</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code-changes"><span class="nav-number">5.</span> <span class="nav-text">Code changes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implement-saveToGCS"><span class="nav-number">6.</span> <span class="nav-text">Implement saveToGCS.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test"><span class="nav-number">7.</span> <span class="nav-text">Test</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Local-test-on-your-own-computer"><span class="nav-number">7.1.</span> <span class="nav-text">Local test (on your own computer)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-to-the-folder-where-you-have-main-go"><span class="nav-number">7.1.1.</span> <span class="nav-text">cd to the folder where you have main.go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Open-your-Postman-change-the-method-to-POST-in-the-url-enter-‘http-localhost-8080-post’"><span class="nav-number">7.1.2.</span> <span class="nav-text">Open your Postman, change the method to POST, in the url enter ‘http://localhost:8080/post’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Verify-the-search-API-is-working"><span class="nav-number">7.1.3.</span> <span class="nav-text">Verify the search API is working</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Integration-test-TBD"><span class="nav-number">8.</span> <span class="nav-text">Integration test (TBD)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Remote-test-homework"><span class="nav-number">8.1.</span> <span class="nav-text">Remote test (homework)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-out-from-github"><span class="nav-number">8.1.1.</span> <span class="nav-text">Check out from github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-to-your-folder-with-main-go-and-app-yaml"><span class="nav-number">8.1.2.</span> <span class="nav-text">cd to your folder with main.go and app.yaml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Open-Postman"><span class="nav-number">8.1.3.</span> <span class="nav-text">Open Postman.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cors"><span class="nav-number">9.</span> <span class="nav-text">Cors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Vim-go-plugin"><span class="nav-number">9.1.</span> <span class="nav-text">(Optional) Vim go plugin:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spam-and-Abuse-Detection"><span class="nav-number">10.</span> <span class="nav-text">Spam and Abuse Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">10.1.</span> <span class="nav-text">Solutions</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+    <div id="sidebar-dimmer"></div>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Anda Luo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">202k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">3:04</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

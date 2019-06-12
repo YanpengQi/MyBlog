@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":true},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Linking JavaScript file and html fileAdding JavaScript into an HTML DocumentYou can add JavaScript code in an HTML document by employing the dedicated HTML tag&amp;lt;script&amp;gt; that wraps around JavaScri">
+<meta name="keywords" content="Web,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Notes] JavaScript Basic">
+<meta property="og:url" content="http://yoursite.com/2019/04/14/[Notes] JavaScript Basic/index.html">
+<meta property="og:site_name" content="Anda">
+<meta property="og:description" content="Linking JavaScript file and html fileAdding JavaScript into an HTML DocumentYou can add JavaScript code in an HTML document by employing the dedicated HTML tag&amp;lt;script&amp;gt; that wraps around JavaScri">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-13-18-32-30.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-13-18-38-21.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-9-38-10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-9-42-42.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-9-49-37.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-10-5-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-10-10-25.png">
+<meta property="og:updated_time" content="2019-04-14T17:52:19.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Notes] JavaScript Basic">
+<meta name="twitter:description" content="Linking JavaScript file and html fileAdding JavaScript into an HTML DocumentYou can add JavaScript code in an HTML document by employing the dedicated HTML tag&amp;lt;script&amp;gt; that wraps around JavaScri">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-13-18-32-30.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/14/[Notes] JavaScript Basic/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[Notes] JavaScript Basic | Anda</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Anda</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Notes of study, work and life</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">2</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">26</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/Luorinz" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/14/[Notes] JavaScript Basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anda Luo">
+      <meta itemprop="description" content="Notes of study, work and life">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anda">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Notes] JavaScript Basic
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-14 17:39:28 / Modified: 10:52:19" itemprop="dateCreated datePublished" datetime="2019-04-14T17:39:28-07:00">2019-04-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">8.2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">7 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Linking-JavaScript-file-and-html-file"><a href="#Linking-JavaScript-file-and-html-file" class="headerlink" title="Linking JavaScript file and html file"></a>Linking JavaScript file and html file</h1><h2 id="Adding-JavaScript-into-an-HTML-Document"><a href="#Adding-JavaScript-into-an-HTML-Document" class="headerlink" title="Adding JavaScript into an HTML Document"></a>Adding JavaScript into an HTML Document</h2><p>You can add JavaScript code in an HTML document by employing the dedicated HTML tag<code>&lt;script&gt;</code> that wraps around JavaScript code.<br>The <code>&lt;script&gt;</code> tag can be placed in the <code>&lt;head&gt;</code> section of your HTML, in the <code>&lt;body&gt;</code> section, or after the <code>&lt;/body&gt;</code> close tag, depending on when you want the JavaScript to load.</p>
+<h3 id="Method-1-Inline-Mode"><a href="#Method-1-Inline-Mode" class="headerlink" title="Method 1: Inline Mode"></a>Method 1: Inline Mode</h3><p><img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-13-18-32-30.png" alt="9. JavaScript Basic-2019-4-13-18-32-30.png"></p>
+<blockquote>
+<p>不便于代码分离</p>
+</blockquote>
+<h3 id="Method-2-using-lt-script-gt-tag"><a href="#Method-2-using-lt-script-gt-tag" class="headerlink" title="Method 2: using &lt;script&gt; tag"></a>Method 2: using <code>&lt;script&gt;</code> tag</h3><p>The <code>&lt;script&gt;</code> tag can be placed in the <code>&lt;head&gt;</code> section of your HTML, in the <code>&lt;body&gt;</code> section, or after the <code>&lt;/body&gt;</code> close tag, depending on when you want the JavaScript to load.</p>
+<ul>
+<li>Internal Style</li>
+<li>External Style</li>
+<li><img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-13-18-38-21.png" alt="9. JavaScript Basic-2019-4-13-18-38-21.png"></li>
+</ul>
+<blockquote>
+<p>浏览器先执行完<code>&lt;script&gt;</code>tag才会渲染其他组件</p>
+</blockquote>
+<h1 id="JavaScript-Fundamentals"><a href="#JavaScript-Fundamentals" class="headerlink" title="JavaScript Fundamentals"></a>JavaScript Fundamentals</h1><h2 id="variables"><a href="#variables" class="headerlink" title="variables"></a>variables</h2><ul>
+<li>three ways of variable declaration:<ul>
+<li>let</li>
+<li>var</li>
+<li>const</li>
+</ul>
+</li>
+</ul>
+<p>We use those three keywords to create variables in JavaScript. Example: <code>let message; or var message; or const message;</code></p>
+<ol>
+<li>var variables are defined from the beginning of the function, no matter where the definition is.</li>
+<li>var has no block scope.</li>
+<li>var can be declared many times, but let and const cannot in the same scope.</li>
+<li>const is used to declare a constant (unchanging) variable(immutable)</li>
+<li>let has only block scope, while var can be global</li>
+</ol>
+<h2 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h2><p>JavaScript is “dynamically typed”, meaning that there are data types, but variables are not bound to any of them.</p>
+<h3 id="Date-types-Number-String-Boolean-Object-Function-Null-Undefined"><a href="#Date-types-Number-String-Boolean-Object-Function-Null-Undefined" class="headerlink" title="Date types: Number, String, Boolean, Object, Function, Null, Undefined"></a>Date types: <code>Number</code>, <code>String</code>, <code>Boolean</code>, <code>Object</code>, <code>Function</code>, <code>Null</code>, <code>Undefined</code></h3><ul>
+<li><p><code>Number</code> - The number type serves both for integer and floating point numbers: 123, 12.22..</p>
+<p>Note: <code>NaN</code> belong to the type number but it’s not “normal” numbers. <code>NaN</code> represents an error.</p>
+</li>
+<li><p><code>String</code> - A string may consist of only one character or many of them. Double and single quotes have no difference between them in JavaScript. E.g. ‘aba’, “I am a string.”</p>
+</li>
+<li><p><code>Boolean</code> - The boolean type has only two values: true and false.</p>
+</li>
+<li><p><code>Null</code> - <strong>A special value</strong> which is for unknown values. </p>
+<p>In JavaScript null is not a “reference to a non-existing object” or a “null pointer” like in some other languages.<br>It’s just a special value which has the sense of “nothing”, “empty” or “value unknown”.</p>
+<p>Example: <code>var age = null;</code><br>The code above states that the age is unknown or empty for some reason.</p>
+</li>
+<li><p><code>Undefined</code> - A special value which is for unassigned values. The meaning of undefined is “value is not assigned”.     </p>
+</li>
+</ul>
+<blockquote>
+<p>Undefined 和 null 不是数据类型，而是特殊值</p>
+</blockquote>
+<ul>
+<li>Function and Object will cover on the following section.</li>
+</ul>
+<h3 id="typeof-Operator"><a href="#typeof-Operator" class="headerlink" title="typeof Operator"></a><code>typeof</code> Operator</h3><p>  returns the type of the argument. It’s useful when we want to process values of different types differently, or just want to make a quick check.<br>    e.g. <code>typeof “abc” - string</code></p>
+<h3 id="Comparisons"><a href="#Comparisons" class="headerlink" title="Comparisons"></a>Comparisons</h3><p>A comparison returns a value. The value is of the boolean type: true or false.</p>
+<ul>
+<li>Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.</li>
+<li>Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.</li>
+<li>Equality check is written as <code>a == b</code> (please note the double equation sign <code>=</code>. A single symbol <code>a = b</code> would mean an assignment).</li>
+<li>Not equals. In maths the notation is <code>≠</code>, in JavaScript it’s written as an assignment with an exclamation sign before it: <code>a != b</code>.</li>
+</ul>
+<p>Note:<br>A regular equality check <code>==</code> has a problem. It cannot differ 0 from false:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">false</span>  <span class="comment">// true</span></span><br><span class="line">“” == <span class="literal">false</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>That’s because operands of different types are converted to a number by the equality operator <code>==</code>. An empty string, just like false, becomes a zero.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>) =&gt; <span class="number">0</span>, <span class="built_in">Number</span>(“”) =&gt; <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>What to do if we’d like to differentiate 0 from false?</p>
+<p>A strict equality operator <code>===</code> checks the equality without type conversion.<br>In other words, if a and b are of different types, then <code>a===b</code> immediately returns <code>false</code> without an attempt to convert them.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> === <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>Functions are the main “building blocks” of the program. They allow the code to be called many times without repetition.</p>
+<ol>
+<li>Function Declaration<br><img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-9-38-10.png" alt="9. JavaScript Basic-2019-4-14-9-38-10.png"></li>
+</ol>
+<p>The function keyword goes first, then goes the name of the function, then a list of parameters between the parentheses (empty in the example above) and finally the code of the function, also named “the function body”, between curly braces.</p>
+<ol start="2">
+<li>Function Expression<br><img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-9-42-42.png" alt="9. JavaScript Basic-2019-4-14-9-42-42.png"></li>
+</ol>
+<p>The meaning of these code samples is the same: “create a function and put it into the variable sayHi”.</p>
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><ol>
+<li>Objects are used to store keyed collections of various data and more complex entities. </li>
+</ol>
+<p>e.g. Dog object: age, name, color, breed attributes, and run() activity.</p>
+<ol start="2">
+<li><p>How to create an instance of object</p>
+<ol>
+<li><p>using new keyword </p>
+<p>E.g. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> car = <span class="keyword">new</span> Car();</span><br><span class="line">  car.color = “red”;</span><br><span class="line">  car.type = “suv”;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>using literal {} 字面量<br>E.g. <code>var car = { color: ‘red’, type: ‘suv’};</code></p>
+</li>
+</ol>
+</li>
+<li><p>Use <code>.</code> or <code>[]</code> to visit attributes. </p>
+<p> eg </p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t2.name; </span><br><span class="line">t2[<span class="string">'age'</span>]; </span><br><span class="line">t2[<span class="string">'run'</span>](); <span class="comment">// function call</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>example<br> <img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-9-49-37.png" alt="9. JavaScript Basic-2019-4-14-9-49-37.png"></p>
+</li>
+</ol>
+<h2 id="Primitive-Type-VS-Reference-Type"><a href="#Primitive-Type-VS-Reference-Type" class="headerlink" title="Primitive Type VS. Reference Type"></a>Primitive Type VS. Reference Type</h2><ol>
+<li>Numbers, Strings, Booleans, and the null and undefined types are primitive. </li>
+<li>Objects, and functions are reference types.</li>
+</ol>
+<p>Difference: </p>
+<ol>
+<li><p>A primitive type has a fixed size in memory. For example, a number occupies eight bytes of memory, and a boolean value can be represented with only one bit. A reference type does not have a fixed size in memory.</p>
+</li>
+<li><p>Primitive types are assigned/copied “as a whole value”, but reference types are stored and copied “by reference”.</p>
+</li>
+</ol>
+<ul>
+<li><p>A variable stores not the object itself, but its “address in memory”, in other words “a reference” to it.</p>
+</li>
+<li><p>When an object variable is copied.the reference is copied, the object is not duplicated. </p>
+</li>
+</ul>
+<h2 id="Pass-by-reference-and-pass-by-value"><a href="#Pass-by-reference-and-pass-by-value" class="headerlink" title="Pass by reference and pass by value"></a>Pass by reference and pass by value</h2><ol>
+<li>In JavaScript primitive types are copied and passed by value and objects are copied and passed by <strong>reference</strong> value.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-10-5-3.png" alt="9. JavaScript Basic-2019-4-14-10-5-3.png"></p>
+<ol start="2">
+<li><p>In terms of function:</p>
+<ol>
+<li><p>In Pass by Value, function is called by directly passing the value of the variable as the argument. Changing the argument inside the function doesn’t affect the variable passed from outside the function.</p>
+</li>
+<li><p>In Pass by Reference, function is called by directly passing the reference/address of the variable as the argument. Changing the argument inside the function affect the variable passed from outside the function. </p>
+</li>
+<li><p>example<br><img src="https://raw.githubusercontent.com/Luorinz/images/master/9.%20JavaScript%20Basic-2019-4-14-10-10-25.png" alt="9. JavaScript Basic-2019-4-14-10-10-25.png"></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>##<br> Hoisting 变量提升</p>
+<p>Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.</p>
+<ol>
+<li><p>Execution Context</p>
+<ul>
+<li>Global execution context (GEC): This is the default execution context in which JS code start it’s execution when the file first loads in the browser. </li>
+<li>Functional execution context (FEC): Functional execution context is defined as the context created by the execution of code inside a function. Each function has its own execution context. </li>
+</ul>
+</li>
+<li><p>Execution context stack </p>
+<ul>
+<li>Execution context stack is a stack data structure to store all the execution stacks created while executing the JS code. </li>
+<li>Global execution context is present by default in execution context stack and it is at the bottom of the stack.</li>
+<li>While executing global execution context code, if JS engines finds a function call, it creates functional execution context of that function and pushes that function execution context on top of execution context stack. </li>
+<li>JS engine executes the function whose execution context is at the top of the execution context stack.</li>
+<li>Once all the code of the function is executed, JS engines pop’s out that function’s execution context and start’s executing the function which is below it.</li>
+</ul>
+</li>
+<li><p>JavaScript engine creates the execution context in the following two stages: <code>Creation phase</code> and <code>Execution phase</code>.</p>
+</li>
+</ol>
+<ul>
+<li><p>In creation phase, JS engine performs the following task:</p>
+<ul>
+<li>creates the <code>activation object</code> or the <code>variable object</code>: <code>activation object</code> is a special object in JS which contain all the variables, function arguments and inner functions declarations information. </li>
+<li>creates the <code>scope chain</code>: Once the <code>activation object</code> gets created, JS engine initializes the scope chain which is a list of all the <code>variables objects</code> inside which the current function exists. This also includes the <code>variable object</code> of <code>global execution context</code>. Scope chain also contains the current <code>function variable object</code>.</li>
+<li>determines the value of <code>this</code>: After the <code>scope chain</code>, JavaScript engine initialize the value of <code>‘this’</code>.</li>
+</ul>
+</li>
+<li><p>In the execution phase, JS engines will again scan through the function to update the variable object with the values of the variables and will execute the code.</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/[Notes] MySQL Basic/" rel="next" title="[Notes] MySQL Basic">
+                <i class="fa fa-chevron-left"></i> [Notes] MySQL Basic
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/16/[Notes] MySQL Basic 2/" rel="prev" title="[Notes] MySQL Basic 2">
+                [Notes] MySQL Basic 2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Anda Luo</p>
+              <div class="site-description motion-element" itemprop="description">Notes of study, work and life</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Luorinz" title="GitHub &rarr; https://github.com/Luorinz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:luorinz@gmail.com" title="E-Mail &rarr; mailto:luorinz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linking-JavaScript-file-and-html-file"><span class="nav-number">1.</span> <span class="nav-text">Linking JavaScript file and html file</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-JavaScript-into-an-HTML-Document"><span class="nav-number">1.1.</span> <span class="nav-text">Adding JavaScript into an HTML Document</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-1-Inline-Mode"><span class="nav-number">1.1.1.</span> <span class="nav-text">Method 1: Inline Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-2-using-lt-script-gt-tag"><span class="nav-number">1.1.2.</span> <span class="nav-text">Method 2: using &lt;script&gt; tag</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-Fundamentals"><span class="nav-number">2.</span> <span class="nav-text">JavaScript Fundamentals</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#variables"><span class="nav-number">2.1.</span> <span class="nav-text">variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Types"><span class="nav-number">2.2.</span> <span class="nav-text">Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-types-Number-String-Boolean-Object-Function-Null-Undefined"><span class="nav-number">2.2.1.</span> <span class="nav-text">Date types: Number, String, Boolean, Object, Function, Null, Undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typeof-Operator"><span class="nav-number">2.2.2.</span> <span class="nav-text">typeof Operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparisons"><span class="nav-number">2.2.3.</span> <span class="nav-text">Comparisons</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function"><span class="nav-number">2.3.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object"><span class="nav-number">2.4.</span> <span class="nav-text">Object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Primitive-Type-VS-Reference-Type"><span class="nav-number">2.5.</span> <span class="nav-text">Primitive Type VS. Reference Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pass-by-reference-and-pass-by-value"><span class="nav-number">2.6.</span> <span class="nav-text">Pass by reference and pass by value</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+    <div id="sidebar-dimmer"></div>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Anda Luo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">202k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">3:04</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

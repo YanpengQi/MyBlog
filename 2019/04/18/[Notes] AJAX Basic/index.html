@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":true},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="What is AJAX?AJAX is not a programming language.AJAX just uses a combination of:  A browser built-in XMLHttpRequest object (to request data from a web server) JavaScript and HTML DOM (to display or us">
+<meta name="keywords" content="Web,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Notes] AJAX Basic">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/[Notes] AJAX Basic/index.html">
+<meta property="og:site_name" content="Anda">
+<meta property="og:description" content="What is AJAX?AJAX is not a programming language.AJAX just uses a combination of:  A browser built-in XMLHttpRequest object (to request data from a web server) JavaScript and HTML DOM (to display or us">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/13.%20AJAX%20Basic-2019-4-17-13-40-54.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Luorinz/images/master/13.%20AJAX%20Basic-2019-4-17-13-46-10.png">
+<meta property="og:updated_time" content="2019-04-18T02:01:37.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Notes] AJAX Basic">
+<meta name="twitter:description" content="What is AJAX?AJAX is not a programming language.AJAX just uses a combination of:  A browser built-in XMLHttpRequest object (to request data from a web server) JavaScript and HTML DOM (to display or us">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Luorinz/images/master/13.%20AJAX%20Basic-2019-4-17-13-40-54.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/[Notes] AJAX Basic/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[Notes] AJAX Basic | Anda</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Anda</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Notes of study, work and life</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">2</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">26</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/Luorinz" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/[Notes] AJAX Basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anda Luo">
+      <meta itemprop="description" content="Notes of study, work and life">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anda">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Notes] AJAX Basic
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-18 02:00:51" itemprop="dateCreated datePublished" datetime="2019-04-18T02:00:51-07:00">2019-04-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 19:01:37" itemprop="dateModified" datetime="2019-04-17T19:01:37-07:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">9.8k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">9 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="What-is-AJAX"><a href="#What-is-AJAX" class="headerlink" title="What is AJAX?"></a>What is AJAX?</h1><p>AJAX is not a programming language.<br>AJAX just uses a combination of:</p>
+<ul>
+<li>A browser built-in XMLHttpRequest object (to request data from a web server)</li>
+<li>JavaScript and HTML DOM (to display or use the data)</li>
+</ul>
+<blockquote>
+<p>AJAX 可以实现异步通信</p>
+</blockquote>
+<h1 id="How-AJAX-Works"><a href="#How-AJAX-Works" class="headerlink" title="How AJAX Works"></a>How AJAX Works</h1><p><img src="https://raw.githubusercontent.com/Luorinz/images/master/13.%20AJAX%20Basic-2019-4-17-13-40-54.png" alt="13. AJAX Basic-2019-4-17-13-40-54.png"></p>
+<h1 id="How-to-use-AJAX"><a href="#How-to-use-AJAX" class="headerlink" title="How to use AJAX"></a>How to use AJAX</h1><p>The keystone of AJAX is the XMLHttpRequest object.</p>
+<h2 id="creating-an-XMLHttpRequest-object"><a href="#creating-an-XMLHttpRequest-object" class="headerlink" title="creating an XMLHttpRequest object"></a>creating an XMLHttpRequest object</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhttp = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<h2 id="send-a-request-to-a-server-we-use-the-open-and-send-methods-of-the-XMLHttpRequest-object"><a href="#send-a-request-to-a-server-we-use-the-open-and-send-methods-of-the-XMLHttpRequest-object" class="headerlink" title="send a request to a server, we use the open() and send() methods of the XMLHttpRequest object"></a>send a request to a server, we use the <code>open()</code> and <code>send()</code> methods of the <code>XMLHttpRequest</code> object</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhttp.open(<span class="string">"GET"</span>, <span class="string">"ajax_info.txt"</span>, <span class="literal">true</span>);</span><br><span class="line">xhttp.send();</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Luorinz/images/master/13.%20AJAX%20Basic-2019-4-17-13-46-10.png" alt="13. AJAX Basic-2019-4-17-13-46-10.png"></p>
+<h2 id="GET-or-POST"><a href="#GET-or-POST" class="headerlink" title="GET or POST?"></a>GET or POST?</h2><p>GET is simpler and faster than POST, and can be used in most cases.<br>However, always use POST requests when:</p>
+<ul>
+<li>A cached file is not an option (update a file or database on the server).</li>
+<li>Sending a large amount of data to the server (POST has no size limitations).</li>
+<li>Sending user input (which can contain unknown characters), POST is more robust and secure than GET.</li>
+</ul>
+<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><p>demo of our web applications: <a href="http://34.211.21.63/Event/" target="_blank" rel="noopener">http://34.211.21.63/Event/</a> </p>
+<h1 id="Complete-HTML-CSS-Javascript-code"><a href="#Complete-HTML-CSS-Javascript-code" class="headerlink" title="Complete HTML/CSS/Javascript code"></a>Complete HTML/CSS/Javascript code</h1><p><a href="http://jsbin.com/hocukukiva/edit?html,css,js" target="_blank" rel="noopener">http://jsbin.com/hocukukiva/edit?html,css,js</a></p>
+<p>将JSBin里面的代码分别放在：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/WebContent/index.html</span><br><span class="line">/WebContent/styles/main.css</span><br><span class="line">/WebContent/scripts/main.js</span><br></pre></td></tr></table></figure></p>
+<p>访问： <a href="http://localhost:8080/Jupiter" target="_blank" rel="noopener">http://localhost:8080/Jupiter</a></p>
+<blockquote>
+<p>自动跳转至index.html<br><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset</a></p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">font-size</span>: 0<span class="selector-class">.9em</span>; </span><br><span class="line"><span class="comment">/* means 0.9 * parent's font-size  */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.top-nav</span> &#123;</span><br><span class="line">	<span class="comment">/* flex means listed from left to right  */</span></span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="Step-1-Run-the-scripts"><a href="#Step-1-Run-the-scripts" class="headerlink" title="Step 1 ()() Run the scripts"></a>Step 1 ()() Run the scripts</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Run all following scripts</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<h2 id="Step-2-Gloval-Variables"><a href="#Step-2-Gloval-Variables" class="headerlink" title="Step 2 Gloval Variables"></a>Step 2 Gloval Variables</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user_id = <span class="string">'1111'</span>;</span><br><span class="line"><span class="keyword">var</span> user_fullname = <span class="string">'John Smith'</span>;</span><br><span class="line"><span class="keyword">var</span> lng = <span class="number">-122.08</span>;</span><br><span class="line"><span class="keyword">var</span> lat = <span class="number">37.38</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="step3-main-function-entrance"><a href="#step3-main-function-entrance" class="headerlink" title="step3: main function(entrance)"></a>step3: main function(entrance)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">init();</span><br><span class="line"><span class="comment">/* step4: define init function */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Register event listeners</span></span><br><span class="line">  $(<span class="string">'nearby-btn'</span>).addEventListener(<span class="string">'click'</span>, loadNearbyItems);</span><br><span class="line"><span class="comment">//		$('fav-btn').addEventListener('click', loadFavoriteItems);</span></span><br><span class="line"><span class="comment">//		$('recommend-btn').addEventListener('click', loadRecommendedItems);</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> welcomeMsg = $(<span class="string">'welcome-msg'</span>);</span><br><span class="line">          welcomeMsg.innerHTML = <span class="string">'Welcome, '</span> + user_fullname;</span><br><span class="line">      </span><br><span class="line">          <span class="comment">// step 7</span></span><br><span class="line">          initGeoLocation();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step5-create-function"><a href="#step5-create-function" class="headerlink" title="step5: create $ function"></a>step5: create $ function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A helper function that creates a DOM element &lt;tag options...&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> $(<span class="params">tag, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!options) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(tag);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(tag);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">var</span> option <span class="keyword">in</span> options) &#123;</span><br><span class="line">    <span class="keyword">if</span> (options.hasOwnProperty(option)) &#123;</span><br><span class="line">      element[option] = options[option];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step6-create-AJAX-helper-function"><a href="#step6-create-AJAX-helper-function" class="headerlink" title="step6: create AJAX helper function"></a>step6: create AJAX helper function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param method - GET|POST|PUT|DELETE</span></span><br><span class="line"><span class="comment"> * @param url - API end point</span></span><br><span class="line"><span class="comment"> * @param callback - This the successful callback</span></span><br><span class="line"><span class="comment"> * @param errorHandler - This is the failed callback</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">method, url, data, callback, errorHandler</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">  xhr.open(method, url, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断request</span></span><br><span class="line">  xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 resopnse</span></span><br><span class="line">    <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="comment">// callback 属于回调函数</span></span><br><span class="line">      callback(xhr.responseText);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status === <span class="number">403</span>) &#123;</span><br><span class="line">      onSessionInvalid();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      errorHandler();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">"The request couldn't be completed."</span>);</span><br><span class="line">    errorHandler();</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (data === <span class="literal">null</span>) &#123;</span><br><span class="line">    xhr.send();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    xhr.setRequestHeader(<span class="string">"Content-Type"</span>,</span><br><span class="line">        <span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line">    xhr.send(data);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-7-initGeoLocation-function"><a href="#step-7-initGeoLocation-function" class="headerlink" title="step 7: initGeoLocation function"></a>step 7: initGeoLocation function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initGeoLocation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (navigator.geolocation) &#123;</span><br><span class="line">    <span class="comment">// step 8</span></span><br><span class="line">    <span class="comment">// get current position by browser.</span></span><br><span class="line">    navigator.geolocation.getCurrentPosition(onPositionUpdated,</span><br><span class="line">        onLoadPositionFailed, &#123;</span><br><span class="line">          maximumAge : <span class="number">60000</span></span><br><span class="line">        &#125;);</span><br><span class="line">    showLoadingMessage(<span class="string">'Retrieving your location...'</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// step 9</span></span><br><span class="line">    onLoadPositionFailed();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-8-onPositionUpdated-function"><a href="#step-8-onPositionUpdated-function" class="headerlink" title="step 8: onPositionUpdated function"></a>step 8: onPositionUpdated function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onPositionUpdated</span>(<span class="params">position</span>) </span>&#123;</span><br><span class="line">  lat = position.coords.latitude;</span><br><span class="line">  lng = position.coords.longitude;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// step 11</span></span><br><span class="line">  loadNearbyItems();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-9-onLoadPositionFailed-function"><a href="#step-9-onLoadPositionFailed-function" class="headerlink" title="step 9: onLoadPositionFailed function"></a>step 9: onLoadPositionFailed function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onLoadPositionFailed</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.warn(<span class="string">'navigator.geolocation is not available'</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//step 10</span></span><br><span class="line">  getLocationFromIP();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-10-getLocationFromIP-function"><a href="#step-10-getLocationFromIP-function" class="headerlink" title="step 10: getLocationFromIP function"></a>step 10: getLocationFromIP function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLocationFromIP</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Get location from http://ipinfo.io/json</span></span><br><span class="line">  <span class="keyword">var</span> url = <span class="string">'http://ipinfo.io/json'</span></span><br><span class="line">  <span class="keyword">var</span> req = <span class="literal">null</span>;</span><br><span class="line">  ajax(<span class="string">'GET'</span>, url, req, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">JSON</span>.parse(res);</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'loc'</span> <span class="keyword">in</span> result) &#123;</span><br><span class="line">      <span class="keyword">var</span> loc = result.loc.split(<span class="string">','</span>);</span><br><span class="line">      lat = loc[<span class="number">0</span>];</span><br><span class="line">      lng = loc[<span class="number">1</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.warn(<span class="string">'Getting location by IP failed.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// step 11</span></span><br><span class="line">    loadNearbyItems();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-11-loadNearbyItems-function"><a href="#step-11-loadNearbyItems-function" class="headerlink" title="step 11: loadNearbyItems function"></a>step 11: loadNearbyItems function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * API #1 Load the nearby items API end point: [GET]</span></span><br><span class="line"><span class="comment"> * /Dashi/search?user_id=1111&amp;lat=37.38&amp;lon=-122.08</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadNearbyItems</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'loadNearbyItems'</span>);</span><br><span class="line">  <span class="comment">// step 12</span></span><br><span class="line">  activeBtn(<span class="string">'nearby-btn'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The request parameters</span></span><br><span class="line">  <span class="keyword">var</span> url = <span class="string">'./search'</span>;</span><br><span class="line">  <span class="keyword">var</span> params = <span class="string">'user_id='</span> + user_id + <span class="string">'&amp;lat='</span> + lat + <span class="string">'&amp;lon='</span> + lng;</span><br><span class="line">  <span class="keyword">var</span> req = <span class="built_in">JSON</span>.stringify(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// step 13</span></span><br><span class="line">  <span class="comment">// display loading message</span></span><br><span class="line">  showLoadingMessage(<span class="string">'Loading nearby items...'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// make AJAX call</span></span><br><span class="line">  ajax(<span class="string">'GET'</span>, url + <span class="string">'?'</span> + params, req,</span><br><span class="line">  <span class="comment">// successful callback</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> items = <span class="built_in">JSON</span>.parse(res);</span><br><span class="line">    <span class="keyword">if</span> (!items || items.length === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// step 14</span></span><br><span class="line">      showWarningMessage(<span class="string">'No nearby item.'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// step 16</span></span><br><span class="line">      listItems(items);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// failed callback</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// step 15</span></span><br><span class="line">    showErrorMessage(<span class="string">'Cannot load nearby items.'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-12-activeBtn-function"><a href="#step-12-activeBtn-function" class="headerlink" title="step 12: activeBtn function"></a>step 12: activeBtn function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A helper function that makes a navigation button active</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @param btnId - The id of the navigation button</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">activeBtn</span>(<span class="params">btnId</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'main-nav-btn'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// deactivate all navigation buttons</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span><br><span class="line">    btns[i].className = btns[i].className.replace(<span class="regexp">/\bactive\b/</span>, <span class="string">''</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// active the one that has id = btnId</span></span><br><span class="line">  <span class="keyword">var</span> btn = $(btnId);</span><br><span class="line">  btn.className += <span class="string">' active'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step-13-showLoadingMessage-function"><a href="#step-13-showLoadingMessage-function" class="headerlink" title="step 13: showLoadingMessage function"></a>step 13: showLoadingMessage function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showLoadingMessage</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> itemList = $(<span class="string">'item-list'</span>);</span><br><span class="line">  itemList.innerHTML = <span class="string">'&lt;p class="notice"&gt;&lt;i class="fa fa-spinner fa-spin"&gt;&lt;/i&gt; '</span></span><br><span class="line">      + msg + <span class="string">'&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** step 14: showWarningMessage function **/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showWarningMessage</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> itemList = $(<span class="string">'item-list'</span>);</span><br><span class="line">  itemList.innerHTML = <span class="string">'&lt;p class="notice"&gt;&lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; '</span></span><br><span class="line">      + msg + <span class="string">'&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** step15: showErrorMessage function **/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showErrorMessage</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> itemList = $(<span class="string">'item-list'</span>);</span><br><span class="line">  itemList.innerHTML = <span class="string">'&lt;p class="notice"&gt;&lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt; '</span></span><br><span class="line">      + msg + <span class="string">'&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step16-listItems-function"><a href="#step16-listItems-function" class="headerlink" title="step16: listItems function"></a>step16: listItems function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param items - An array of item JSON objects</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">listItems</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Clear the current results</span></span><br><span class="line">  <span class="keyword">var</span> itemList = $(<span class="string">'item-list'</span>);</span><br><span class="line">  itemList.innerHTML = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; items.length; i++) &#123;</span><br><span class="line">    <span class="comment">// step 17</span></span><br><span class="line">    addItem(itemList, items[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="step17-addItem-function"><a href="#step17-addItem-function" class="headerlink" title="step17: addItem function"></a>step17: addItem function</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Add item to the list</span></span><br><span class="line"><span class="comment"> * @param itemList - The &lt;ul id="item-list"&gt; tag</span></span><br><span class="line"><span class="comment"> * @param item - The item data (JSON object)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addItem</span>(<span class="params">itemList, item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> item_id = item.item_id;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// create the &lt;li&gt; tag and specify the id and class attributes</span></span><br><span class="line">  <span class="keyword">var</span> li = $(<span class="string">'li'</span>, &#123;</span><br><span class="line">    id : <span class="string">'item-'</span> + item_id,</span><br><span class="line">    className : <span class="string">'item'</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data attribute</span></span><br><span class="line">  li.dataset.item_id = item_id;</span><br><span class="line">  li.dataset.favorite = item.favorite;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// item image</span></span><br><span class="line">  <span class="keyword">if</span> (item.image_url) &#123;</span><br><span class="line">    li.appendChild($(<span class="string">'img'</span>, &#123;</span><br><span class="line">      src : item.image_url</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    li.appendChild($(<span class="string">'img'</span>, &#123;</span><br><span class="line">      src : <span class="string">'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'</span></span><br><span class="line">    &#125;))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// section</span></span><br><span class="line">  <span class="keyword">var</span> section = $(<span class="string">'div'</span>, &#123;&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// title</span></span><br><span class="line">  <span class="keyword">var</span> title = $(<span class="string">'a'</span>, &#123;</span><br><span class="line">    href : item.url,</span><br><span class="line">    target : <span class="string">'_blank'</span>,</span><br><span class="line">    className : <span class="string">'item-name'</span></span><br><span class="line">  &#125;);</span><br><span class="line">  title.innerHTML = item.name;</span><br><span class="line">  section.appendChild(title);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// category</span></span><br><span class="line">  <span class="keyword">var</span> category = $(<span class="string">'p'</span>, &#123;</span><br><span class="line">    className : <span class="string">'item-category'</span></span><br><span class="line">  &#125;);</span><br><span class="line">  category.innerHTML = <span class="string">'Category: '</span> + item.categories.join(<span class="string">', '</span>);</span><br><span class="line">  section.appendChild(category);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> stars = $(<span class="string">'div'</span>, &#123;</span><br><span class="line">    className : <span class="string">'stars'</span></span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; item.rating; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> star = $(<span class="string">'i'</span>, &#123;</span><br><span class="line">      className : <span class="string">'fa fa-star'</span></span><br><span class="line">    &#125;);</span><br><span class="line">    stars.appendChild(star);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ((<span class="string">''</span> + item.rating).match(<span class="regexp">/\.5$/</span>)) &#123;</span><br><span class="line">    stars.appendChild($(<span class="string">'i'</span>, &#123;</span><br><span class="line">      className : <span class="string">'fa fa-star-half-o'</span></span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  section.appendChild(stars);</span><br><span class="line"></span><br><span class="line">  li.appendChild(section);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// address</span></span><br><span class="line">  <span class="keyword">var</span> address = $(<span class="string">'p'</span>, &#123;</span><br><span class="line">    className : <span class="string">'item-address'</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  address.innerHTML = item.address.replace(<span class="regexp">/,/g</span>, <span class="string">'&lt;br/&gt;'</span>).replace(<span class="regexp">/\"/g</span>,</span><br><span class="line">      <span class="string">''</span>);</span><br><span class="line">  li.appendChild(address);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// favorite link</span></span><br><span class="line">  <span class="keyword">var</span> favLink = $(<span class="string">'p'</span>, &#123;</span><br><span class="line">    className : <span class="string">'fav-link'</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  favLink.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    changeFavoriteItem(item_id);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  favLink.appendChild($(<span class="string">'i'</span>, &#123;</span><br><span class="line">    id : <span class="string">'fav-icon-'</span> + item_id,</span><br><span class="line">    className : item.favorite ? <span class="string">'fa fa-heart'</span> : <span class="string">'fa fa-heart-o'</span></span><br><span class="line">  &#125;));</span><br><span class="line"></span><br><span class="line">  li.appendChild(favLink);</span><br><span class="line"></span><br><span class="line">  itemList.appendChild(li);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/17/[Notes] Simple Recommendation System/" rel="next" title="[Notes] Simple Recommendation System">
+                <i class="fa fa-chevron-left"></i> [Notes] Simple Recommendation System
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/[Notes] Cloud Computing Basic/" rel="prev" title="[Notes] Cloud Computing Basic">
+                [Notes] Cloud Computing Basic <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Anda Luo</p>
+              <div class="site-description motion-element" itemprop="description">Notes of study, work and life</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Luorinz" title="GitHub &rarr; https://github.com/Luorinz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:luorinz@gmail.com" title="E-Mail &rarr; mailto:luorinz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-AJAX"><span class="nav-number">1.</span> <span class="nav-text">What is AJAX?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-AJAX-Works"><span class="nav-number">2.</span> <span class="nav-text">How AJAX Works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-use-AJAX"><span class="nav-number">3.</span> <span class="nav-text">How to use AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#creating-an-XMLHttpRequest-object"><span class="nav-number">3.1.</span> <span class="nav-text">creating an XMLHttpRequest object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#send-a-request-to-a-server-we-use-the-open-and-send-methods-of-the-XMLHttpRequest-object"><span class="nav-number">3.2.</span> <span class="nav-text">send a request to a server, we use the open() and send() methods of the XMLHttpRequest object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-or-POST"><span class="nav-number">3.3.</span> <span class="nav-text">GET or POST?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Project"><span class="nav-number">3.4.</span> <span class="nav-text">Project</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Complete-HTML-CSS-Javascript-code"><span class="nav-number">4.</span> <span class="nav-text">Complete HTML/CSS/Javascript code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript"><span class="nav-number">5.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-Run-the-scripts"><span class="nav-number">5.1.</span> <span class="nav-text">Step 1 ()() Run the scripts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-2-Gloval-Variables"><span class="nav-number">5.2.</span> <span class="nav-text">Step 2 Gloval Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step3-main-function-entrance"><span class="nav-number">5.3.</span> <span class="nav-text">step3: main function(entrance)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step5-create-function"><span class="nav-number">5.4.</span> <span class="nav-text">step5: create $ function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step6-create-AJAX-helper-function"><span class="nav-number">5.5.</span> <span class="nav-text">step6: create AJAX helper function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-7-initGeoLocation-function"><span class="nav-number">5.6.</span> <span class="nav-text">step 7: initGeoLocation function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-8-onPositionUpdated-function"><span class="nav-number">5.7.</span> <span class="nav-text">step 8: onPositionUpdated function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-9-onLoadPositionFailed-function"><span class="nav-number">5.8.</span> <span class="nav-text">step 9: onLoadPositionFailed function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-10-getLocationFromIP-function"><span class="nav-number">5.9.</span> <span class="nav-text">step 10: getLocationFromIP function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-11-loadNearbyItems-function"><span class="nav-number">5.10.</span> <span class="nav-text">step 11: loadNearbyItems function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-12-activeBtn-function"><span class="nav-number">5.11.</span> <span class="nav-text">step 12: activeBtn function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-13-showLoadingMessage-function"><span class="nav-number">5.12.</span> <span class="nav-text">step 13: showLoadingMessage function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step16-listItems-function"><span class="nav-number">5.13.</span> <span class="nav-text">step16: listItems function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step17-addItem-function"><span class="nav-number">5.14.</span> <span class="nav-text">step17: addItem function</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+    <div id="sidebar-dimmer"></div>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Anda Luo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">202k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">3:04</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
